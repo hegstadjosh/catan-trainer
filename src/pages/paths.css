@@ -1,0 +1,100 @@
+/* Paths page: pick a path and turn → read the bill → compare paths → audit the ledger. Scoped to #page-paths. */
+#page-paths{font-variant-numeric:tabular-nums}
+#page-paths .pa-head{margin:0 0 16px}
+#page-paths .pa-head h2{font-size:20px;letter-spacing:-.3px;margin:0 0 4px}
+#page-paths .pa-boundary{font-size:12px;line-height:1.5;color:var(--cl-muted);margin:0;max-width:68ch}
+#page-paths .pa-boundary strong{color:var(--cl-fg);font-weight:600}
+#page-paths h3{font-size:16px;font-weight:650;line-height:1.35;margin:0 0 4px}
+#page-paths .pa-note{font-size:12px;line-height:1.5;color:var(--cl-muted);margin:0 0 8px;max-width:72ch}
+
+/* Controls */
+#page-paths .pa-controls{display:grid;grid-template-columns:minmax(0,260px) minmax(0,180px);gap:12px;margin:0 0 20px}
+#page-paths .pa-controls label{font-size:12px;font-weight:500;color:var(--cl-muted);gap:4px}
+#page-paths .pa-controls select{min-height:36px;color:var(--cl-fg);font-size:14px}
+
+/* Chart beside the selected-turn readout */
+#page-paths .pa-main{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(280px,1fr);gap:32px;align-items:start}
+#page-paths .pa-figure{margin:0;min-width:0}
+#page-paths .pa-legend{gap:6px 14px;margin:0 0 4px;color:var(--cl-muted)}
+#page-paths .pa-legend span{display:inline-flex;align-items:center}
+#page-paths .cl-swatch{width:9px;height:9px;border-radius:2px}
+#page-paths .cl-chart{margin:0}
+#page-paths .cl-chart text.axis-title{fill:var(--cl-muted)}
+#page-paths [data-chart-frame]{stroke:none}
+#page-paths figcaption{font-size:12px;color:var(--cl-muted);margin:2px 0 0;padding-left:58px}
+
+/* Turn slider aligned under the chart's x scale.
+   JS plots turn t at 61 + (t+.6)/25.2·(w−82) px, so the thumb centre follows the bars. */
+#page-paths .pa-scrub{--thumb:18px;position:relative}
+#page-paths .pa-scrub input{-webkit-appearance:none;appearance:none;display:block;background:none;border:0;border-radius:0;padding:0;height:32px;cursor:pointer;
+ --inset:calc((100% - 82px) * .02381);
+ margin-left:calc(61px + var(--inset) - var(--thumb) / 2);
+ width:calc(100% - 82px - 2 * var(--inset) + var(--thumb))}
+#page-paths .pa-scrub input::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:var(--cl-line)}
+#page-paths .pa-scrub input::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:var(--thumb);height:var(--thumb);margin-top:calc(2px - var(--thumb) / 2);border-radius:50%;background:var(--cl-accent);border:2px solid var(--cl-input);box-shadow:0 1px 2px rgba(0,0,0,.3)}
+#page-paths .pa-scrub input::-moz-range-track{height:4px;border-radius:2px;background:var(--cl-line)}
+#page-paths .pa-scrub input::-moz-range-thumb{width:var(--thumb);height:var(--thumb);box-sizing:border-box;border-radius:50%;background:var(--cl-accent);border:2px solid var(--cl-input);box-shadow:0 1px 2px rgba(0,0,0,.3)}
+#page-paths .pa-scrub input:focus-visible{outline:2px solid var(--cl-accent);outline-offset:2px}
+
+/* Selected turn */
+#page-paths .pa-turn{min-width:0}
+#page-paths .pa-turn-title{display:flex;align-items:baseline;gap:6px;font-size:22px;letter-spacing:-.4px;margin:0 0 6px}
+#page-paths .pa-turn-title label{display:inline;font-size:inherit;font-weight:650;color:var(--cl-fg)}
+#page-paths .pa-of{font-size:14px;font-weight:400;letter-spacing:0;color:var(--cl-muted)}
+#page-paths .pa-detail{font-size:12px;line-height:1.5;color:var(--cl-muted);margin:0 0 16px;min-height:3em}
+#page-paths .pa-detail strong{display:inline-block;font-size:14px;font-weight:600;color:var(--cl-fg);margin-bottom:2px}
+
+/* Tables: row rules only, right-aligned numbers */
+#page-paths table{font-size:14px}
+#page-paths caption{text-align:left;font-size:12px;font-weight:500;color:var(--cl-muted);padding:0 0 4px}
+#page-paths thead th{font-size:12px;font-weight:500;color:var(--cl-muted);vertical-align:bottom;white-space:nowrap}
+#page-paths tbody th,#page-paths tbody td{vertical-align:middle}
+#page-paths .pa-budget th:not(:first-child),#page-paths .pa-budget td{text-align:right;width:22%}
+#page-paths .pa-budget tbody th{font-weight:550;white-space:nowrap}
+#page-paths .pa-budget td:nth-child(3){font-weight:650}
+#page-paths .pa-budget td:nth-child(2),#page-paths .pa-budget td:nth-child(4){color:var(--cl-muted)}
+#page-paths .pa-budget tbody tr:last-child>*{border-top:1px solid var(--cl-fg);border-bottom:0;font-weight:650;color:var(--cl-fg)}
+
+/* Comparison */
+#page-paths .pa-compare{margin:32px 0 0;padding-top:16px;border-top:1px solid var(--cl-line)}
+#page-paths .pa-compare table{min-width:440px}
+#page-paths .pa-compare th:not(:first-child),#page-paths .pa-compare td{text-align:right}
+#page-paths .pa-compare tbody th{font-weight:550}
+#page-paths .pa-compare td:last-child{font-weight:650}
+#page-paths .pa-compare thead .cl-swatch{margin-right:4px}
+#page-paths .cl-selected-row>*{background:var(--cl-soft)}
+#page-paths .cl-selected-row>th{box-shadow:inset 3px 0 0 var(--cl-accent);padding-left:10px}
+
+/* Ledger */
+#page-paths .pa-ledger{margin:24px 0 0;font-size:14px}
+#page-paths .pa-ledger summary{font-size:14px;font-weight:600;color:var(--cl-fg);padding:8px 0}
+#page-paths .pa-ledger .pa-note{margin:4px 0 12px}
+#page-paths .pa-ledger table{min-width:520px}
+#page-paths .pa-ledger td:first-child,#page-paths .pa-ledger td:nth-child(4),#page-paths .pa-ledger td:last-child,
+#page-paths .pa-ledger th:first-child,#page-paths .pa-ledger th:nth-child(4),#page-paths .pa-ledger th:last-child{text-align:right;white-space:nowrap}
+#page-paths .pa-ledger td:first-child,#page-paths .pa-ledger th:first-child{width:3.5em;padding-right:14px}
+#page-paths .pa-ledger td:nth-child(3){color:var(--cl-muted)}
+
+@media(max-width:860px){
+#page-paths .pa-main{grid-template-columns:minmax(0,1fr);gap:20px}
+#page-paths .pa-compare{margin-top:24px}
+}
+@media(max-width:430px){
+#page-paths .pa-controls{grid-template-columns:minmax(0,1fr)}
+#page-paths .pa-compare table,#page-paths table{font-size:13px}
+#page-paths .pa-compare th,#page-paths .pa-compare td{padding:6px 4px}
+#page-paths .pa-compare table{min-width:400px}
+#page-paths figcaption{padding-left:0}
+}
+@media(pointer:coarse){
+#page-paths .pa-controls select{min-height:44px;font-size:16px}
+#page-paths .pa-scrub{--thumb:26px}
+#page-paths .pa-scrub input{height:44px}
+#page-paths .pa-ledger summary{min-height:44px;display:flex;align-items:center}
+}
+@media print{
+#page-paths .pa-scrub,#page-paths figcaption{display:none}
+#page-paths .pa-ledger>*{display:block}
+}
+
+#page-paths .pa-scrub>label{display:block;font-size:13px;font-weight:500;margin-bottom:6px}#page-paths .pa-scrub output{font-weight:650;font-variant-numeric:tabular-nums}

@@ -1,0 +1,73 @@
+<section id="page-dev" role="tabpanel" aria-labelledby="tab-dev" hidden>
+<header class="dv-head">
+<h2>Development cards</h2>
+<p>Costs 1 sheep + 1 wheat + 1 ore. Compare it with the best thing those cards could build instead, not with doing nothing.</p>
+</header>
+
+<div class="dv-block" role="group" aria-labelledby="dv-decide-title">
+<h3 id="dv-decide-title">Should you buy one now?</h3>
+<p class="dv-lede">Wheat + ore also go toward a city. A city is a certain +1 VP and more income; a dev card is a random, usually delayed ability. Weigh each possible outcome by its chance, then compare that value with your best available build.</p>
+<dl class="dv-cases">
+<div><dt>You are at 9 VP</dt><dd>A fresh-deck buy has a 20% chance of a VP card and an immediate win. Most other draws cannot help this turn.</dd></div>
+<div><dt>You have played 2 knights</dt><dd>A third played knight can claim Largest Army (+2 VP) if nobody already holds it. To take the award from someone, you must exceed their played knights. A new purchase must wait until a later turn.</dd></div>
+<div><dt>The robber is on your best hex</dt><dd>A knight restores that production and steals one card if the victim has any. It can also block an opponent.</dd></div>
+<div><dt>You need roads</dt><dd>Road Building replaces up to 2 wood + 2 brick. Two roads you do not need are not “4 useful cards.”</dd></div>
+<div><dt>You are missing one pair</dt><dd>Year of Plenty gives 2 chosen cards but costs 3 to buy. Its value is choice and timing, not card profit.</dd></div>
+<div><dt>Opponents are piling a resource</dt><dd>Monopoly’s return depends on their hands. There is no fixed expected payout without a model of those hands.</dd></div>
+</dl>
+<details class="dv-derive"><summary>Formal decision rule</summary>
+<div class="dv-eq">Q(s,a) = E[V(next state) | s, a]<br>Buy a dev card iff Q(s, dev) &gt; max Q(s, alternative)</div>
+<p>Use one objective for every action: ideally the probability of winning, or a stated approximation. For a simple utility model, E[U(dev)] = Σ p(card)·U(card | position) − (λ<sub>sheep</sub> + λ<sub>wheat</sub> + λ<sub>ore</sub>). Each λ is that resource’s current marginal value, not automatically 1. Never add VP and resource counts without stating their conversion.</p>
+</details>
+</div>
+
+<div class="dv-block" role="group" aria-labelledby="dv-deck-title">
+<div class="dv-titlerow"><h3 id="dv-deck-title">What is left in the deck</h3><span class="dv-hint">Edit counts to model cards already revealed</span></div>
+<div class="dv-deckwrap"><table class="dv-deck"><thead><tr><th scope="col">Card</th><th scope="col">Left</th><th scope="col">Next draw</th><th scope="col">Effect</th><th scope="col">Worth it when</th></tr></thead><tbody id="dev-deck"></tbody></table></div>
+<p class="dv-note">Defaults are a fresh standard deck (25 cards). Edited counts are a scenario, not a tracker: cards opponents hold unrevealed are still unknown. You cannot play a non-VP card on the turn you buy it, and you may play at most one per turn. VP cards count immediately.</p>
+</div>
+
+<div class="dv-pair">
+<div class="dv-block" role="group" aria-labelledby="dv-odds-title">
+<h3 id="dv-odds-title">Chance of drawing what you need</h3>
+<div class="dv-inputs">
+<label>Card<select id="dev-target"><option value="0">Knights</option><option value="1">Victory points</option></select></label>
+<label>Copies needed<input id="dev-needed" type="number" min="1" max="14" value="3" inputmode="numeric"></label>
+<label>Purchases<input id="dev-buys" type="number" min="0" max="25" value="5" inputmode="numeric"></label>
+</div>
+<div id="dev-odds" class="dv-result" aria-live="polite"></div>
+<div id="dev-quantiles" class="dv-quant"></div>
+<div id="dev-chart" class="cl-chart dv-chart"></div>
+<p class="dv-note">Counts cards <em>drawn</em>, not knights played or an award secured. Assumes a uniform shuffle and no other player buying.</p>
+<details class="dv-derive"><summary>How this is computed</summary>
+<div class="dv-eq">P(X ≥ q) = Σ<sub>j≥q</sub> C(K,j)·C(N−K, b−j) / C(N,b)<br>E[buys to q successes] = q(N+1)/(K+1)</div>
+<p>N = cards in the assumed deck; K = target cards; b = purchases; q = copies needed. Draws are without replacement (hypergeometric). The expectation is finite only when K ≥ q.</p>
+</details>
+</div>
+
+<div class="dv-block" role="group" aria-labelledby="dv-knight-title">
+<h3 id="dv-knight-title">Knight: production restored</h3>
+<div class="dv-inputs">
+<label>Blocked hex pips<input id="knight-pips" type="number" min="0" max="5" value="5" inputmode="numeric"></label>
+<label>Your buildings there (city = 2)<input id="knight-units" type="number" min="0" max="6" value="2" inputmode="numeric"></label>
+<label>Rolls it would stay blocked<input id="knight-rolls" type="number" min="0" max="36" value="4" inputmode="numeric"></label>
+</div>
+<div id="knight-result" class="dv-result" aria-live="polite"></div>
+<p class="dv-note">Assumes you already hold a playable knight and the robber would otherwise stay for that many rolls; another robber move may cut this short. Add the theft only if the victim has cards. Army progress and harm to opponents are separate.</p>
+<details class="dv-derive"><summary>How this is computed</summary>
+<div class="dv-eq">Expected cards restored = pips × units × rolls / 36</div>
+<p>Pips are the number of dice combinations (out of 36) that roll the hex’s number: 5 for a 6 or 8, down to 1 for a 2 or 12.</p>
+</details>
+</div>
+</div>
+
+<div class="dv-block" role="group" aria-labelledby="dv-misread-title">
+<h3 id="dv-misread-title">Common misreadings</h3>
+<ul class="dv-misreads">
+<li><strong>Minimum ≠ expectation.</strong> Three fresh-deck buys are all knights only 15.8% of the time. The mean number of buys to a third knight is 5.2.</li>
+<li><strong>“20% VP” ≠ “0.2 VP of value.”</strong> That counts direct VP only; it omits army progress, production, theft and progress cards.</li>
+<li><strong>Buying power ≠ playing speed.</strong> Even holding three knights, playing all three takes three of your turns. New purchases add a one-turn wait.</li>
+<li><strong>Draws are not independent.</strong> Each draw changes the deck. Use hypergeometric odds for a fixed deck, not repeated 56% coin flips.</li>
+</ul>
+</div>
+</section>

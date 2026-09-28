@@ -1,0 +1,43 @@
+<section id="page-paths" role="tabpanel" aria-labelledby="tab-paths" hidden>
+<header class="pa-head">
+<h2>Resource bill over time</h2>
+<p class="pa-boundary"><strong>Illustrative sequences, not game data.</strong> Turn timing and development draws are invented; resource income, trades and the robber are not simulated.</p>
+</header>
+<div class="pa-controls">
+<label>Purchase path<select id="path-choice"></select></label>
+<label>Chart shows<select id="path-mode"><option value="cumulative">Running totals</option><option value="turn">Spent this turn</option></select></label>
+</div>
+<div class="pa-main">
+<figure class="pa-figure">
+<div class="cl-legend pa-legend" id="path-legend"></div>
+<div id="path-chart" class="cl-chart"></div>
+<div class="pa-scrub"><label for="path-turn">Turn <output id="path-turn-label" for="path-turn">12</output> of 24</label><input id="path-turn" type="range" min="0" max="24" step="1" value="12" aria-describedby="path-turn-hint"></div>
+<figcaption id="path-turn-hint">Drag the slider or click a bar to choose a turn. Later turns are faded.</figcaption>
+</figure>
+<div class="pa-turn">
+<h3 class="pa-turn-title">At this turn</h3>
+<div id="path-detail" class="cl-result pa-detail" aria-live="polite"></div>
+<table class="pa-budget">
+<caption>Cards paid by resource</caption>
+<thead><tr><th scope="col">Resource</th><th scope="col">This turn</th><th scope="col">So far</th><th scope="col">By turn 24</th></tr></thead>
+<tbody id="path-budget"></tbody>
+</table>
+</div>
+</div>
+<section class="pa-compare" aria-labelledby="path-compare-title">
+<h3 id="path-compare-title">All paths at the selected turn</h3>
+<p class="pa-note">Cards paid so far and victory points. Equal turn numbers do not imply equal real speed.</p>
+<div class="cl-table-wrap"><table>
+<thead><tr><th scope="col">Path</th><th scope="col"><span class="cl-swatch" style="background:var(--cl-r1)"></span>Wood</th><th scope="col"><span class="cl-swatch" style="background:var(--cl-r2)"></span>Brick</th><th scope="col"><span class="cl-swatch" style="background:var(--cl-r3)"></span>Sheep</th><th scope="col"><span class="cl-swatch" style="background:var(--cl-r4)"></span>Wheat</th><th scope="col"><span class="cl-swatch" style="background:var(--cl-r5)"></span>Ore</th><th scope="col">VP</th></tr></thead>
+<tbody id="path-compare"></tbody>
+</table></div>
+</section>
+<details class="pa-ledger">
+<summary>Purchase ledger and assumptions</summary>
+<p class="pa-note">Costs are exact for the listed purchases. Legal expansion space and control of awards are assumed. Initial placements are free. Hidden VP are counted. No income, trades, robber, discards or progress-card benefits are modeled. These sequences show demand for resources; they do not estimate win rates.</p>
+<div class="cl-table-wrap"><table>
+<thead><tr><th scope="col">Turn</th><th scope="col">Action</th><th scope="col">Cards paid</th><th scope="col">Running bill</th><th scope="col">VP</th></tr></thead>
+<tbody id="path-ledger"></tbody>
+</table></div>
+</details>
+</section>

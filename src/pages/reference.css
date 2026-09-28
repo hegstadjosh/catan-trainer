@@ -1,0 +1,113 @@
+/* Reference page. Layers: memorize (costs, dice) → plan (routes) → verify (accounting, deductions). */
+#page-reference{font-variant-numeric:tabular-nums}
+#page-reference .rf-head{margin:0 0 20px}
+#page-reference .rf-head h2{font-size:22px;letter-spacing:-.3px;margin:0 0 2px}
+#page-reference .rf-head p{margin:0;color:var(--cl-muted);font-size:14px}
+#page-reference h3{font-size:16px;font-weight:650;letter-spacing:-.1px;line-height:1.35;margin:0 0 8px}
+#page-reference h4{font-size:12px;font-weight:600;color:var(--cl-muted);margin:14px 0 4px}
+#page-reference h4:first-of-type{margin-top:0}
+#page-reference .rf-block{min-width:0}
+#page-reference .rf-top,#page-reference .rf-bottom{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px}
+#page-reference .rf-routes,#page-reference .rf-bottom{border-top:1px solid var(--cl-line);margin-top:28px;padding-top:20px}
+#page-reference .rf-hint{font-size:12px;color:var(--cl-muted);line-height:1.5;margin:8px 0 0;max-width:68ch}
+#page-reference table{font-size:14px}
+#page-reference thead th{font-size:12px;font-weight:600;color:var(--cl-muted);vertical-align:bottom}
+#page-reference th,#page-reference td{padding:7px 8px}
+
+/* Costs: a compact grid that reads like the building-costs card. */
+#page-reference .rf-recipes th:not(:first-child),#page-reference .rf-recipes td{text-align:center;width:12%}
+#page-reference .rf-recipes tbody td{font-size:16px;font-weight:600}
+#page-reference .rf-recipes tbody td:last-child{font-size:14px;font-weight:400;color:var(--cl-muted);border-left:1px solid var(--cl-line)}
+#page-reference .rf-recipes thead th:last-child{border-left:1px solid var(--cl-line)}
+#page-reference .rf-recipes tbody td:last-child strong{font-weight:600;color:var(--cl-fg)}
+#page-reference .rf-dot{display:block;width:8px;height:8px;border-radius:50%;background:var(--r);margin:0 auto 4px}
+
+/* Dice: a pip bar makes the ranking visible; rows are emitted by app.js in the order 6/8, 5/9, 4/10, 3/11, 2/12, 7. */
+#page-reference .rf-dice th:not(:first-child),#page-reference .rf-dice td{text-align:right}
+#page-reference .rf-dice tbody th{white-space:nowrap}
+#page-reference .rf-dice tbody td:nth-child(2){white-space:nowrap}
+#page-reference .rf-dice tbody td:nth-child(2)::before{content:"";display:inline-block;vertical-align:middle;height:6px;width:calc(var(--p,0)*7px);margin-right:8px;background:var(--cl-fg);border-radius:1px;opacity:.75}
+#page-reference .rf-dice tbody tr:nth-child(1){--p:5}
+#page-reference .rf-dice tbody tr:nth-child(2){--p:4}
+#page-reference .rf-dice tbody tr:nth-child(3){--p:3}
+#page-reference .rf-dice tbody tr:nth-child(4){--p:2}
+#page-reference .rf-dice tbody tr:nth-child(5){--p:1}
+#page-reference .rf-dice tbody tr:nth-child(6){--p:6;color:var(--cl-muted)}
+#page-reference .rf-dice tbody tr:nth-child(6)>*{border-top:1px solid var(--cl-fg);border-bottom:0}
+#page-reference .rf-dice tbody tr:nth-child(6) td:nth-child(2)::before{background:var(--cl-muted);opacity:.5}
+#page-reference .rf-dice tbody td:nth-child(3){font-weight:600;color:var(--cl-fg)}
+#page-reference .rf-dice tbody tr:nth-child(6) td:nth-child(3){color:var(--cl-muted)}
+#page-reference .rf-eq{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px;margin:12px 0 0;padding:8px 10px;background:var(--cl-soft);border-radius:4px;overflow-wrap:anywhere}
+
+/* Routes */
+#page-reference .rf-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+#page-reference .rf-bar h3{margin:0}
+#page-reference .rf-roads{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:var(--cl-fg)}
+#page-reference .rf-var{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--cl-muted)}
+#page-reference .rf-roads input{width:64px;text-align:right}
+#page-reference .cl-table-wrap{margin-top:10px}
+#page-reference table.rf-route-table{min-width:0}
+#page-reference .rf-route-table thead th{text-align:right}
+#page-reference .rf-route-table thead th:first-child,#page-reference .rf-route-table thead th:last-child{text-align:left}
+#page-reference .rf-route-table thead .rf-group{text-align:center;color:var(--cl-fg);border-bottom:1px solid var(--cl-line);padding-bottom:3px}
+#page-reference .rf-route-table thead tr:first-child th[rowspan]{border-bottom:1px solid var(--cl-line)}
+#page-reference .rf-route-table td{white-space:nowrap;text-align:right;vertical-align:baseline}
+#page-reference .rf-route-table td:first-child{white-space:normal;text-align:left;min-width:180px}
+#page-reference .rf-route-table td:first-child strong{font-weight:500}
+#page-reference .rf-route-table td:nth-child(3),#page-reference .rf-route-table td:nth-child(4),#page-reference .rf-route-table td:nth-child(6){color:var(--cl-muted)}
+#page-reference .rf-route-table td:nth-child(5){font-weight:650;font-size:16px}
+#page-reference .rf-route-table td:nth-child(3),#page-reference .rf-route-table th.rf-group+th.rf-group,#page-reference .rf-route-table td:nth-child(5){border-left:1px solid var(--cl-line)}
+#page-reference .rf-route-table .cl-budget{text-align:left;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px;padding-left:16px}
+#page-reference .rf-route-table .cl-caption{font-size:12px;margin:2px 0 0}
+/* Route families, in model order: buildings only · +road · +army · +both · +VP cards. */
+#page-reference .rf-route-table tbody tr:is(:nth-child(3),:nth-child(6),:nth-child(8),:nth-child(10))>*{border-top:1px solid var(--cl-fg)}
+#page-reference .rf-caveats{margin:10px 0 0;padding:0 0 0 16px;font-size:12px;color:var(--cl-muted);line-height:1.5;max-width:80ch}
+#page-reference .rf-caveats li{margin:0 0 4px}
+
+/* Accounting */
+#page-reference .rf-formulas,#page-reference .rf-vars{margin:0}
+#page-reference .rf-formulas>div{display:grid;grid-template-columns:130px minmax(0,1fr);gap:12px;padding:8px 0;border-bottom:1px solid var(--cl-line);align-items:baseline}
+#page-reference .rf-formulas dt{font-size:12px;color:var(--cl-muted);font-weight:500}
+#page-reference .rf-formulas dd{margin:0}
+#page-reference .rf-formulas code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:14px;color:var(--cl-fg);overflow-wrap:anywhere}
+#page-reference .rf-formulas small{display:block;font-size:12px;color:var(--cl-muted);margin-top:2px}
+#page-reference .rf-vars{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;margin-top:12px;font-size:12px;color:var(--cl-muted)}
+#page-reference .rf-vars>div{display:flex;gap:8px}
+#page-reference .rf-vars dt{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--cl-fg);min-width:32px}
+#page-reference .rf-vars dd{margin:0}
+#page-reference .rf-facts{margin:0;padding:0;list-style:none;font-size:14px}
+#page-reference .rf-facts li{padding:0 0 8px;line-height:1.45}
+#page-reference .rf-facts strong{font-weight:600}
+
+@media(max-width:760px){
+#page-reference .rf-top,#page-reference .rf-bottom{grid-template-columns:minmax(0,1fr);gap:24px}
+#page-reference .rf-bottom>.rf-block+.rf-block{border-top:1px solid var(--cl-line);padding-top:20px}
+}
+
+/* Phones: each route becomes a stacked row instead of a 7-column table. Labels mirror the table header. */
+@media(max-width:640px){
+#page-reference .rf-head h2{font-size:20px}
+#page-reference th,#page-reference td{padding:6px 4px}
+#page-reference .rf-recipes thead th{font-size:11px}
+#page-reference .rf-recipes tbody th{font-size:13px}
+#page-reference .rf-dice thead th{font-size:11px}
+#page-reference .rf-dice tbody td:nth-child(2)::before{width:calc(var(--p,0)*4px);margin-right:5px}
+#page-reference .rf-roads input{min-height:44px;font-size:16px}
+#page-reference .rf-route-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+#page-reference .rf-route-table,#page-reference .rf-route-table tbody{display:block}
+#page-reference .rf-route-table tbody tr{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px 6px;padding:10px 0;border-bottom:1px solid var(--cl-line)}
+#page-reference .rf-route-table tbody tr>*{border:0!important;padding:0;text-align:left;white-space:normal;min-width:0}
+#page-reference .rf-route-table tbody tr:is(:nth-child(3),:nth-child(6),:nth-child(8),:nth-child(10)){border-top:1px solid var(--cl-fg)}
+#page-reference .rf-route-table td:first-child{grid-column:1/-1;min-width:0;font-size:15px;margin-bottom:4px}
+#page-reference .rf-route-table td:nth-child(n+2)::before{display:block;font-size:11px;font-weight:400;color:var(--cl-muted);line-height:1.3}
+#page-reference .rf-route-table td:nth-child(2)::before{content:"New settl."}
+#page-reference .rf-route-table td:nth-child(3)::before{content:"Dev min"}
+#page-reference .rf-route-table td:nth-child(4)::before{content:"Dev mean*"}
+#page-reference .rf-route-table td:nth-child(5)::before{content:"Cards min"}
+#page-reference .rf-route-table td:nth-child(6)::before{content:"Cards mean*"}
+#page-reference .rf-route-table td:nth-child(7)::before{content:"Wood · brick · sheep · wheat · ore (min draws)"}
+#page-reference .rf-route-table td.cl-budget{grid-column:1/-1;padding:0;margin-top:6px;font-size:14px}
+#page-reference .rf-formulas>div{grid-template-columns:1fr;gap:2px}
+#page-reference .rf-vars{grid-template-columns:1fr}
+}
+@media print{#page-reference .rf-eq{background:none;padding-left:0}}

@@ -1,0 +1,114 @@
+/* Play page: enter position → see purchases → investigate. Scoped to #page-play. */
+#page-play{font-variant-numeric:tabular-nums}
+#page-play .pl-now{display:block}
+#page-play .pl-title,#page-play .pl-section{font-size:16px;font-weight:650;line-height:1.35;margin:0 0 8px}
+#page-play .pl-section{margin:32px 0 0;padding-top:16px;border-top:1px solid var(--cl-line)}
+#page-play h3{font-size:14px;font-weight:650;line-height:1.35;margin:12px 0 8px}
+#page-play .pl-caption{font-size:12px;line-height:1.5;color:var(--cl-muted);margin:8px 0}
+#page-play .pl-caption strong{color:var(--cl-fg);font-weight:600}
+
+/* Tables: row rules only, compact numeric cells */
+#page-play table{font-size:14px}
+#page-play thead th{font-size:12px;font-weight:500;color:var(--cl-muted);vertical-align:bottom;padding-top:0}
+#page-play thead small{display:block;font-size:11px}
+#page-play tbody th,#page-play tbody td{vertical-align:middle}
+#page-play .pl-num{text-align:right}
+
+/* Position inputs */
+#page-play .pl-inputs tbody th{font-weight:550;white-space:nowrap}
+#page-play .pl-inputs td input{width:64px;max-width:64px;min-height:34px;padding:5px 7px;text-align:right}
+#page-play .pl-inputs [data-source]{width:180px;max-width:none;text-align:left}
+#page-play .pl-inputs [data-pips][readonly]{background:var(--cl-soft);color:var(--cl-muted)}
+#page-play .pl-pip-mode{display:block;white-space:nowrap;font-size:10px}
+#page-play .pl-inputs td:last-child strong{font-weight:600}
+#page-play .cl-swatch{width:9px;height:9px;border-radius:2px;vertical-align:1px}
+#page-play .pl-production{font-size:13px;color:var(--cl-muted);margin:10px 0 16px}
+#page-play .pl-production strong{font-size:16px;font-weight:650;color:var(--cl-fg)}
+
+/* Ports: compact toggles; checked state shown by box, weight and border */
+#page-play .pl-ports{border:0;padding:0;margin:0 0 8px;min-width:0}
+#page-play .pl-ports legend{font-size:12px;font-weight:500;color:var(--cl-muted);padding:0;margin-bottom:6px}
+#page-play .pl-port-options{display:flex;flex-wrap:wrap;gap:6px}
+#page-play .pl-port{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:4px 10px 4px 8px;border:1px solid var(--cl-line);border-radius:4px;background:var(--cl-input);font-size:13px;font-weight:450;cursor:pointer;grid-template-columns:none}
+#page-play .pl-port .cl-swatch{margin:0}
+#page-play .pl-port:has(input:checked){border-color:var(--cl-fg);background:var(--cl-soft);font-weight:600}
+#page-play .pl-port:has(input:focus-visible){outline:2px solid var(--cl-accent);outline-offset:2px}
+#page-play .pl-port input:focus-visible{outline:none}
+
+/* Purchases: ready rows carry the answer */
+#page-play .pl-actions tbody th{font-weight:600;white-space:nowrap}
+#page-play .pl-actions td:last-child{text-align:right;white-space:nowrap}
+#page-play .pl-actions tbody tr:not(:has(.cl-ready)) td{color:var(--cl-muted)}
+#page-play .pl-actions tbody tr:has(.cl-ready)>*{background:var(--cl-soft)}
+#page-play .pl-actions tbody tr:has(.cl-ready)>th{box-shadow:inset 3px 0 0 var(--cl-accent);padding-left:10px}
+#page-play .pl-actions tbody tr:has(.cl-ready)>td:last-child{padding-right:8px}
+#page-play .cl-ready{color:var(--cl-fg);font-weight:650}
+#page-play .cl-ready::before{content:"✓ ";font-weight:700}
+#page-play .cl-mini{font-size:12px;color:var(--cl-muted);font-weight:400;margin-top:2px}
+
+/* Disclosure for derivations */
+#page-play .pl-help{margin:8px 0;font-size:13px}
+#page-play .pl-help summary{color:var(--cl-fg);font-weight:500;padding:4px 0}
+#page-play .pl-help p{font-size:12px;line-height:1.5;color:var(--cl-muted);margin:4px 0 8px}
+#page-play .cl-equation{color:var(--cl-fg);padding:6px 0}
+
+/* Investigations */
+#page-play .pl-investigate{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:start}
+#page-play .pl-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:8px 10px;margin:0 0 12px}
+#page-play .pl-controls label{font-size:12px;font-weight:500;color:var(--cl-muted);gap:4px}
+#page-play .pl-controls label small{display:inline;font-size:11px}
+#page-play .pl-controls input,#page-play .pl-controls select{min-height:34px;color:var(--cl-fg)}
+#page-play .pl-controls label:has(input:disabled){opacity:.55}
+#page-play .pl-controls label:has(input:disabled) input{opacity:1;background:var(--cl-soft)}
+#page-play .pl-result,#page-play .pl-port-output .cl-result{font-size:13px;line-height:1.6;margin:0 0 8px;color:var(--cl-muted)}
+#page-play .pl-result strong,#page-play .pl-port-output .cl-result strong{font-size:16px;font-weight:650;color:var(--cl-fg)}
+#page-play .pl-port-output table th,#page-play .pl-port-output table td{text-align:right}
+#page-play .pl-port-output table th:first-child{text-align:left}
+#page-play .cl-chart{margin:4px 0}
+
+@media(max-width:760px){
+#page-play .pl-now,#page-play .pl-investigate{grid-template-columns:minmax(0,1fr);gap:24px}
+#page-play .pl-section{margin-top:24px}
+}
+@media(max-width:430px){
+#page-play table{font-size:13px}
+#page-play .pl-inputs td input{width:58px;max-width:58px}
+#page-play .pl-port{flex:1 1 calc(50% - 6px)}
+}
+@media(pointer:coarse){
+#page-play .pl-inputs td input,#page-play .pl-controls input,#page-play .pl-controls select{min-height:44px;font-size:16px}
+#page-play .pl-port{min-height:44px}
+#page-play .pl-help summary{min-height:44px;display:flex;align-items:center}
+}
+@media print{#page-play .pl-actions tbody tr:has(.cl-ready)>*{background:none}}
+.pl-quant{margin:30px 0;padding:24px;border:1px solid var(--cl-line,#ddd9d0);border-radius:18px;background:#fff}
+.pl-quant-head h2{margin:0 0 5px;font-size:1.35rem}.pl-quant-head p{margin:0 0 22px;color:#66655f;max-width:68ch}
+.pl-quant-grid{display:grid;grid-template-columns:minmax(280px,1fr) minmax(280px,1fr);gap:28px}.pl-source-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.pl-source-grid label,.pl-quant-fields label{display:grid;gap:5px;font-size:.87rem;font-weight:650}.pl-source-grid input,.pl-quant-fields input,.pl-quant-fields select{width:100%;box-sizing:border-box;padding:9px 10px;border:1px solid #c9c6bd;border-radius:8px;background:#fff;color:#252522;font:inherit}.pl-quant-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0}.pl-quant-check{display:flex;align-items:center;gap:8px;margin:8px 0;font-size:.9rem}.pl-quant-error:empty{display:none}.pl-quant-error{padding:10px;border-radius:8px;background:#fff1e9;color:#8a3921}.pl-quant-answer{min-width:0}.pl-quant-lead{font-size:1.08rem;margin:0 0 12px}.pl-quant-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-bottom:16px}.pl-quant-metrics div{padding:12px;border:1px solid #e6e3dc;border-radius:10px}.pl-quant-metrics strong{display:block;font-size:1.25rem}.pl-quant-metrics small{color:#66655f}.pl-quant-answer table{width:100%;border-collapse:collapse;font-size:.85rem}.pl-quant-answer th,.pl-quant-answer td{padding:7px 4px;border-bottom:1px solid #e6e3dc;text-align:left}.pl-quant-answer td:last-child{text-align:right}.pl-quant-answer h3{font-size:.94rem;margin:19px 0 5px}.pl-quant-answer .pl-caption{margin:9px 0 0}@media(max-width:760px){.pl-quant{padding:18px}.pl-quant-grid{grid-template-columns:1fr}.pl-quant-fields{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.pl-presets{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:17px;font-size:.85rem}.pl-presets span{font-weight:650;margin-right:3px}.pl-presets button{border:1px solid #d2cec4;border-radius:18px;padding:6px 9px;background:#faf9f6;color:#35342f;cursor:pointer}.pl-presets button:hover,.pl-presets button:focus-visible{border-color:#77736b}.pl-presets button:focus-visible{outline:2px solid #34342e;outline-offset:2px}
+.pl-compare{margin:15px 0 0;border:0;border-radius:9px;padding:10px 13px;background:#30352f;color:#fff;font:inherit;font-weight:650;cursor:pointer}.pl-compare:focus-visible{outline:2px solid #30352f;outline-offset:3px}.pl-compare:disabled{opacity:.55;cursor:wait}
+#page-play .pl-compare{color:#fff;background:#30352f}
+#page-play .pl-compare:disabled{color:#56534d;background:#eee;border:1px solid #bdb8ad;opacity:1;cursor:not-allowed}
+#page-play .pl-quant-check{display:flex;align-items:center;gap:8px;min-height:32px;font-size:13px;font-weight:450}
+#page-play .pl-quant-check input[type=checkbox]{flex:0 0 16px;width:16px;min-height:16px;height:16px;margin:0}
+@media(pointer:coarse){#page-play .pl-quant-check{min-height:44px}}
+.pl-flow-details{margin:18px 0 28px;border-top:1px solid var(--cl-line);border-bottom:1px solid var(--cl-line);padding:8px 0}.pl-flow-details>summary{font-size:14px;font-weight:650;min-height:44px;display:list-item;align-content:center}.pl-flow-details .pl-answer{padding:12px 0 20px}.pl-quant-warning{padding:9px 11px;border-left:2px solid #925015;background:#f7f1e6;font-size:12px;line-height:1.45}
+@media(max-width:600px){
+ #page-play .pl-inputs,#page-play .pl-inputs tbody{display:block;width:100%}
+ #page-play .pl-inputs thead{display:none}
+ #page-play .pl-inputs tr{display:grid;grid-template-columns:92px minmax(0,1fr) 88px;grid-template-rows:auto auto;gap:4px 8px;padding:8px 0;border-bottom:1px solid var(--cl-line)}
+ #page-play .pl-inputs th,#page-play .pl-inputs td{display:block;border:0;padding:0!important;min-width:0}
+ #page-play .pl-inputs th{grid-column:1;grid-row:1;align-self:center}
+ #page-play .pl-inputs td:nth-child(4){grid-column:2;grid-row:1;display:flex;align-items:center;justify-content:flex-end;gap:3px}
+ #page-play .pl-inputs td:nth-child(5){grid-column:3;grid-row:1;text-align:right}
+ #page-play .pl-inputs td:nth-child(2){grid-column:1;grid-row:2}
+ #page-play .pl-inputs td:nth-child(3){grid-column:2/4;grid-row:2}
+ #page-play .pl-inputs td::before{display:block;font-size:11px;color:var(--cl-muted);margin-bottom:3px}
+ #page-play .pl-inputs td:nth-child(2)::before{content:'In hand'}
+ #page-play .pl-inputs td:nth-child(3)::before{content:'Producing dice numbers'}
+ #page-play .pl-inputs td:nth-child(4)::before{content:'Pips';margin:0}
+ #page-play .pl-inputs td:nth-child(5)::before{content:'Bank ';display:inline;margin:0}
+ #page-play .pl-inputs td input,#page-play .pl-inputs [data-source]{width:100%;max-width:none;text-align:left}
+ #page-play .pl-inputs td:nth-child(4) [data-pips][readonly]{display:inline-block;width:22px;max-width:22px;height:20px;min-height:20px!important;padding:0;border:0;background:none;color:var(--cl-fg);font-size:12px;text-align:right}
+ #page-play .pl-inputs td:nth-child(4):has([readonly]) .pl-pip-mode{display:none}
+ #page-play .pl-inputs td:last-child strong{display:inline;font-size:12px}
+}

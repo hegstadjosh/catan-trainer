@@ -1,0 +1,11 @@
+# Licensing and publication scope
+
+The [MIT license](LICENSE) is the intended license for code authored for this project. It gives permission for that code only to the extent its contributors hold the necessary rights. It does not replace any separate third-party license or convey rights the contributors do not own.
+
+The game engine in `web/game/engine.mjs` and `web/game/rules.mjs` adapts Viral Doshi's MIT-licensed implementation; its original attribution and license are preserved in [`web/game/LICENSE`](web/game/LICENSE). D3 is ISC-licensed, and the Vega-family browser dependencies are BSD-3-Clause-licensed. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and the complete license texts there.
+
+**Code permission is separate from game intellectual property.** CATAN is a trademark of CATAN GmbH. CATAN GmbH and CATAN Studio's [published IP guidance](https://www.catan.com/guidelines-dealing-intellectual-property-catan) distinguishes commentary and limited fair use from publishing derivative works, and describes permission and credit requirements for authorized derivative publication. No CATAN authorization has been established for this full playable app. The independent-project notice in the README is attribution and non-affiliation information; it is **not** a CATAN permission notice. The upstream MIT license likewise does not grant use of CATAN trademarks, official artwork, rulebook text, or other third-party material.
+
+The clean source export is intended to exclude private game screenshots, reference images, test accounts, credentials, and local operational notes. A final publication review must check the exact staged file list, generated bundles, and new Git history. Contributors should not add screenshots or copied art without clear redistribution rights.
+
+Before making this full playable repository public, the maintainer should settle two concrete points: confirm that project contributors can grant MIT for their original code, and decide with appropriate rights-holder or legal input whether the intended game implementation/name/public post is within an authorized scope. A narrower guide or generic math-tool release is another possible scope, but it needs its own exact file and branding review. This document records the current evidence and does not claim a legal determination about each file.

@@ -1,0 +1,47 @@
+<section id="page-play" role="tabpanel" aria-labelledby="tab-play">
+<div class="pl-now">
+<div class="pl-position">
+<h2 class="pl-title">Your position</h2>
+<div class="cl-table-wrap"><table class="pl-inputs"><thead><tr><th scope="col">Resource</th><th scope="col">In hand</th><th scope="col">Producing dice numbers <small>repeat for a city</small></th><th scope="col">Pips <small>from numbers</small></th><th scope="col">Bank rate</th></tr></thead><tbody id="play-inputs"></tbody></table></div>
+<div id="play-production" class="pl-production" aria-live="polite"></div>
+<fieldset class="pl-ports"><legend>Ports you own</legend><div class="pl-port-options"><label class="pl-port pl-port-generic"><input id="generic-port" type="checkbox"><span>3:1 any</span></label><label class="pl-port"><input type="checkbox" data-port="0" aria-label="Wood 2:1 port"><span class="cl-swatch" style="background:var(--cl-r1)"></span><span>Wood 2:1</span></label><label class="pl-port"><input type="checkbox" data-port="1" aria-label="Brick 2:1 port"><span class="cl-swatch" style="background:var(--cl-r2)"></span><span>Brick 2:1</span></label><label class="pl-port"><input type="checkbox" data-port="2" aria-label="Sheep 2:1 port"><span class="cl-swatch" style="background:var(--cl-r3)"></span><span>Sheep 2:1</span></label><label class="pl-port"><input type="checkbox" data-port="3" aria-label="Wheat 2:1 port"><span class="cl-swatch" style="background:var(--cl-r4)"></span><span>Wheat 2:1</span></label><label class="pl-port"><input type="checkbox" data-port="4" aria-label="Ore 2:1 port"><span class="cl-swatch" style="background:var(--cl-r5)"></span><span>Ore 2:1</span></label></div></fieldset>
+<details class="pl-help"><summary>How production is counted</summary><p>Enter each paying dice number once per settlement, twice per city. Leave out a number while the robber blocks that hex. Pips then follow automatically. If you only know weighted pips, leave the numbers empty and enter pips for a rough flow estimate; deadline odds cannot infer timing from pips alone. A 2:1 port overrides the 3:1 rate for its resource.</p><div class="cl-equation">Expected cards per table roll: μᵢ = pipsᵢ / 36</div></details>
+</div>
+</div>
+
+<section class="pl-quant" aria-labelledby="pl-quant-title">
+<div class="pl-quant-head"><div><h2 id="pl-quant-title">Can I afford it by then?</h2><p>Choose a build goal and deadline. Dice numbers above determine which cards arrive together; the result counts whole cards at your build turns.</p></div></div>
+<div class="pl-quant-grid"><div class="pl-quant-controls">
+<div class="pl-presets"><span>Try an example</span><button type="button" data-quant-preset="shared">Wood + brick on 6</button><button type="button" data-quant-preset="split">Wood 6 · brick 8</button></div>
+<div class="pl-quant-fields"><label>Build goal<select id="pl-goal"></select></label><label>Players<input id="pl-players" type="number" min="2" max="6"></label><label>Rolls to next build turn<input id="pl-next-turn" type="number" min="1" max="6"></label><label>Deadline · your turns<input id="pl-deadline" type="number" min="1" max="20"></label></div>
+<label class="pl-quant-check"><input id="pl-discards" type="checkbox" checked> Include seven discards</label><label class="pl-quant-check"><input id="pl-trades" type="checkbox" checked> Allow whole-card bank and port trades</label>
+<p class="pl-caption">No robber movement, player trades, other spending, bank shortage, or board placement check. Seven discards spare goal cards when possible.</p>
+</div><div class="pl-quant-answer"><div id="pl-quant-error" class="pl-quant-error" role="alert"></div><div id="pl-quant-summary" aria-live="polite"></div><button id="pl-compare" class="pl-compare" type="button">Compare card and port changes</button><div id="pl-quant-values" aria-live="polite"></div></div></div>
+</section>
+
+<details class="pl-flow-details"><summary>Purchases ready now and rough flow estimates</summary><div class="pl-answer">
+<h2 class="pl-title">What can I build?</h2>
+<div class="cl-table-wrap"><table class="pl-actions"><thead><tr><th scope="col">Purchase</th><th scope="col">Now</th><th scope="col" class="pl-num">Flow estimate <small>table rolls</small></th></tr></thead><tbody id="play-actions"></tbody></table></div>
+<p class="pl-caption"><strong>Ready</strong> means your hand covers the cost, using whole-card bank trades at your port rates. Still check pieces and placement. Each purchase is checked on its own. Flow estimates are <strong>not expected waiting times</strong>.</p>
+<details class="pl-help"><summary>What the flow estimate means</summary><div class="cl-equation">Smallest t ≥ 0 such that<br>Σ max(cᵢ − hᵢ − tμᵢ, 0) ≤ Σ max(hᵢ + tμᵢ − cᵢ, 0) / rateᵢ</div><p>Income and trades are treated as fractional averages. Mean production hides droughts and correlated rolls, so two positions with equal pips can wait very differently. A zero estimate does not prove whole-card affordability; the Now column does. Ignores player trades, future robber moves, discards and bank shortages.</p></details>
+</div>
+</details>
+
+<h2 class="pl-section">Investigate</h2>
+<div class="pl-investigate">
+<div class="pl-tool">
+<h3>Does a city or settlement pay back?</h3>
+<div class="pl-controls"><label>Purchase<select id="engine-kind"><option value="city">City upgrade</option><option value="settlement">New settlement</option></select></label><label>Site pips<input id="engine-pips" type="number" min="0" max="15" value="12"></label><label>Extra roads<input id="engine-roads" type="number" min="0" max="13" value="1"></label><label>Horizon <small>table rolls</small><input id="engine-horizon" type="number" min="0" max="120" value="24"></label></div>
+<div id="engine-result" class="pl-result" aria-live="polite"></div>
+<div id="engine-chart" class="cl-chart"></div>
+<p class="pl-caption">Extra cards compared with building nothing. A city adds one production unit, not two. Treats all cards as equal value. Ignores the robber, shortages, reinvestment, VP and expansion value.</p>
+</div>
+<div class="pl-tool">
+<h3>How much does my surplus buy?</h3>
+<div class="pl-controls"><label>Resource<select id="port-resource"></select></label><label>Keep for builds<input id="port-reserve" type="number" min="0" max="40" value="1"></label></div>
+<div id="port-output" class="pl-port-output"></div>
+<p class="pl-caption">Uses your current hand and whole-card trades. A 2:1 port doubles long-run conversion versus 4:1; small hands round down. A willing player's 1:1 trade can beat any port.</p>
+<details class="pl-help"><summary>Is this port worth building toward?</summary><div class="cl-equation">Value ≈ extra useful imports − cost of reaching the port − production given up</div><p>Sheep is not automatically the best port. Judge surplus against your plan: development cards spend sheep; cities spend ore and wheat. Late in the game, wood or brick often becomes the surplus.</p></details>
+</div>
+</div>
+</section>

@@ -1,0 +1,94 @@
+/* Development cards page. Every selector is scoped to #page-dev. */
+#page-dev{font-size:14px;line-height:1.5;color:var(--cl-fg);font-variant-numeric:tabular-nums}
+#page-dev .dv-head{padding:4px 0 16px;border-bottom:1px solid var(--cl-line)}
+#page-dev .dv-head h2{font-size:22px;line-height:1.2;letter-spacing:-.3px;font-weight:650;margin:0}
+#page-dev .dv-head p{margin:6px 0 0;color:var(--cl-muted);max-width:68ch}
+
+#page-dev .dv-block{padding:22px 0;border-bottom:1px solid var(--cl-line);min-width:0}
+#page-dev .dv-block:last-child{border-bottom:0}
+#page-dev h3{font-size:16px;line-height:1.35;font-weight:650;margin:0 0 8px;letter-spacing:-.1px}
+#page-dev .dv-titlerow{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 16px;margin-bottom:8px}
+#page-dev .dv-titlerow h3{margin:0}
+#page-dev .dv-hint{font-size:12px;color:var(--cl-muted)}
+#page-dev .dv-lede{margin:0 0 14px;max-width:72ch}
+#page-dev .dv-note{margin:10px 0 0;font-size:12px;line-height:1.5;color:var(--cl-muted);max-width:72ch}
+
+/* Decision situations: scannable condition → consequence pairs */
+#page-dev .dv-cases{margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px}
+#page-dev .dv-cases>div{padding:10px 0;border-top:1px solid var(--cl-line)}
+#page-dev .dv-cases dt{font-weight:650}
+#page-dev .dv-cases dd{margin:2px 0 0;color:var(--cl-muted)}
+
+/* Deck table */
+#page-dev .dv-deckwrap{overflow-x:auto}
+#page-dev .dv-deck{width:100%;border-collapse:collapse;font-size:13px}
+#page-dev .dv-deck th,#page-dev .dv-deck td{text-align:left;vertical-align:middle;padding:7px 10px 7px 0;border-bottom:1px solid var(--cl-line)}
+#page-dev .dv-deck thead th{font-size:12px;font-weight:500;color:var(--cl-muted);padding-top:0;white-space:nowrap}
+#page-dev .dv-deck tbody th{font-weight:650;white-space:nowrap}
+#page-dev .dv-deck tbody td:nth-child(3){font-weight:650;white-space:nowrap;text-align:right;padding-right:18px}
+#page-dev .dv-deck thead th:nth-child(3){text-align:right;padding-right:18px}
+#page-dev .dv-deck tbody td:nth-child(n+4){color:var(--cl-muted)}
+#page-dev .dv-deck tbody tr:last-child>*{border-bottom:0}
+#page-dev .cl-deck-input{width:64px;min-height:36px;padding:4px 8px;font:inherit;font-variant-numeric:tabular-nums;background:var(--cl-input);color:var(--cl-fg);border:1px solid var(--cl-line);border-radius:6px}
+
+/* Calculators */
+#page-dev .dv-pair{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);column-gap:40px;border-bottom:1px solid var(--cl-line)}
+#page-dev .dv-pair>.dv-block{border-bottom:0}
+#page-dev .dv-inputs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:end;margin:4px 0 14px}
+#page-dev .dv-inputs label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--cl-muted);line-height:1.3;min-width:0}
+#page-dev .dv-inputs input,#page-dev .dv-inputs select{width:100%;min-height:36px;padding:5px 8px;font:inherit;font-size:14px;font-variant-numeric:tabular-nums;color:var(--cl-fg);background:var(--cl-input);border:1px solid var(--cl-line);border-radius:6px}
+#page-dev .dv-result{padding:12px 14px;background:var(--cl-soft);border-radius:8px;line-height:1.55;color:var(--cl-muted)}
+#page-dev .dv-result strong{color:var(--cl-fg);font-weight:650}
+#page-dev .dv-result>strong:first-child{display:inline-block;font-size:24px;line-height:1.2;letter-spacing:-.4px;margin-right:4px}
+
+#page-dev .dv-quant{margin-top:12px;overflow-x:auto}
+#page-dev .dv-quant table{width:100%;border-collapse:collapse;font-size:13px}
+#page-dev .dv-quant th,#page-dev .dv-quant td{padding:6px 8px 6px 0;border-bottom:1px solid var(--cl-line);text-align:right;white-space:nowrap}
+#page-dev .dv-quant th:first-child{text-align:left;white-space:normal}
+#page-dev .dv-quant thead th{font-size:12px;font-weight:500;color:var(--cl-muted)}
+#page-dev .dv-quant tbody th{font-weight:500}
+#page-dev .dv-quant tbody td{font-weight:650}
+#page-dev .dv-quant tbody tr:last-child>*{border-bottom:0}
+#page-dev .dv-chart{margin-top:14px;min-height:230px;width:100%}
+#page-dev .dv-chart svg{display:block;font-size:11px;color:var(--cl-muted)}
+
+/* Optional derivations */
+#page-dev .dv-derive{margin-top:12px;font-size:13px}
+#page-dev .dv-derive summary{cursor:pointer;color:var(--cl-muted);font-size:12px;font-weight:500;width:fit-content}
+#page-dev .dv-derive summary:hover{color:var(--cl-fg)}
+#page-dev .dv-derive[open] summary{color:var(--cl-fg);margin-bottom:6px}
+#page-dev .dv-derive p{margin:8px 0 0;color:var(--cl-muted);max-width:72ch}
+#page-dev .dv-eq{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;line-height:1.7;padding:8px 12px;background:var(--cl-soft);border-radius:6px;overflow-x:auto}
+
+/* Misreadings */
+#page-dev .dv-misreads{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px}
+#page-dev .dv-misreads li{padding:10px 0;border-top:1px solid var(--cl-line);color:var(--cl-muted)}
+#page-dev .dv-misreads strong{display:block;color:var(--cl-fg);font-weight:650}
+
+@media(max-width:860px){
+ #page-dev .dv-pair{grid-template-columns:minmax(0,1fr)}
+ #page-dev .dv-pair>.dv-block+.dv-block{border-top:1px solid var(--cl-line)}
+}
+@media(max-width:640px){
+ #page-dev .dv-head h2{font-size:20px}
+ #page-dev .dv-block{padding:18px 0}
+ #page-dev .dv-cases,#page-dev .dv-misreads{grid-template-columns:minmax(0,1fr)}
+ #page-dev .dv-inputs{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+ #page-dev .dv-inputs label:first-child{grid-column:1/-1}
+ #page-dev .dv-inputs input,#page-dev .dv-inputs select,#page-dev .cl-deck-input{min-height:44px;font-size:16px}
+ /* Deck rows stack: name, count and odds on one line; effect and condition below */
+ #page-dev .dv-deckwrap{overflow:visible}
+ #page-dev .dv-deck thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+ #page-dev .dv-deck tbody tr{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;column-gap:12px;padding:10px 0;border-bottom:1px solid var(--cl-line)}
+ #page-dev .dv-deck tbody tr:last-child{border-bottom:0}
+ #page-dev .dv-deck tbody th,#page-dev .dv-deck tbody td{border:0;padding:0}
+ #page-dev .dv-deck tbody td:nth-child(3){padding:0;min-width:64px}
+ #page-dev .dv-deck tbody td:nth-child(3)::before{content:"Next ";font-weight:400;font-size:12px;color:var(--cl-muted)}
+ #page-dev .dv-deck tbody td:nth-child(n+4){grid-column:1/-1;font-size:13px;margin-top:4px}
+ #page-dev .dv-deck tbody td:nth-child(4){color:var(--cl-fg)}
+ #page-dev .dv-deck tbody td:nth-child(5)::before{content:"Worth it when: "}
+ #page-dev .dv-derive summary{padding:12px 0}
+}
+@media(max-width:380px){
+ #page-dev .dv-inputs{grid-template-columns:minmax(0,1fr)}
+}

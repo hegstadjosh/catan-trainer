@@ -1,0 +1,17 @@
+const assert=require('node:assert/strict');
+const F=require('../src/forecast-model.js');
+global.CatanForecast=F;
+const O=require('../src/opponents.js');
+const Flash=require('../src/flash-model.js');
+const original=F.makeForecast({opp:'Red',event:'Road',turns:1,pAfford:.7,pChoose:.5,evidence:'public cards'});
+const legacy=Array.from({length:25},(_,i)=>({name:'Red',text:'Earlier claim '+i,outcome:i%2?'pending':'yes'}));
+const saved=O.sanitize({people:[{name:'Red',total:4,known:[1,0,0,0,0],prod:['6','','','','']}],predictions:legacy,forecasts:[original]});
+assert.equal(saved.predictions.length,25,'old written predictions stay intact');
+assert.equal(saved.forecasts.length,1);
+assert.equal(saved.people[0].prod[0],'6');
+assert.equal(O.sanitize(saved).forecasts[0].fp,original.fp,'forecast commitment survives a round trip');
+const deck=Flash.buildDeck();
+assert(deck.some(c=>c.id==='odds-split-six-eight'));
+assert.equal(Flash.schedule(null,'good').reps,1,'new cards use the unchanged review scheduler');
+assert.equal(new Set(deck.map(c=>c.id)).size,deck.length,'new cards cannot collide with old review IDs');
+console.log('forecast state and flashcard schedule passed');

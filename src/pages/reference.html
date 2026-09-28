@@ -1,0 +1,72 @@
+<section id="page-reference" role="tabpanel" aria-labelledby="tab-reference" hidden>
+<header class="rf-head"><h2>Reference</h2><p>Costs, dice odds, and routes to 10 VP. Memorize the top; check the formulas below.</p></header>
+
+<div class="rf-top">
+<section class="rf-block" aria-labelledby="rf-costs-title">
+<h3 id="rf-costs-title">Build costs</h3>
+<div class="cl-table-wrap"><table class="rf-recipes"><thead><tr><th scope="col">Purchase</th><th scope="col"><i class="rf-dot" style="--r:var(--cl-r1)"></i>Wood</th><th scope="col"><i class="rf-dot" style="--r:var(--cl-r2)"></i>Brick</th><th scope="col"><i class="rf-dot" style="--r:var(--cl-r3)"></i>Sheep</th><th scope="col"><i class="rf-dot" style="--r:var(--cl-r4)"></i>Wheat</th><th scope="col"><i class="rf-dot" style="--r:var(--cl-r5)"></i>Ore</th><th scope="col">Cards</th></tr></thead><tbody id="recipe-table"></tbody></table></div>
+</section>
+
+<section class="rf-block" aria-labelledby="rf-dice-title">
+<h3 id="rf-dice-title">Production: five numbers to know</h3>
+<div class="cl-table-wrap"><table class="rf-dice"><thead><tr><th scope="col">Dice</th><th scope="col">Pips</th><th scope="col">Chance per roll</th><th scope="col">Mean rolls to next hit</th></tr></thead><tbody id="dice-table"></tbody></table></div>
+<p class="rf-eq">P(at least one hit in H rolls) = 1 − (1 − p)ᴴ</p>
+<p class="rf-hint">A 6 has a 13.9% chance per roll. Its 7.2-roll mean wait is not a schedule: a 10-roll drought still has a 22.4% chance.</p>
+</section>
+</div>
+
+<section class="rf-block rf-routes" aria-labelledby="rf-routes-title">
+<div class="rf-bar"><h3 id="rf-routes-title">Routes to exactly 10 VP</h3><label class="rf-roads" for="route-roads">Paid roads <span class="rf-var">r</span><input id="route-roads" type="number" min="0" max="13" value="4" inputmode="numeric"></label></div>
+<p class="rf-hint">End-position counts: a city replaces a settlement. Costs start after the two free settlements and roads. The road count is a scenario, not proof of a legal board route; Longest Road needs at least 3 paid roads if no free roads are played.</p>
+<div class="cl-table-wrap"><table class="cl-route-table rf-route-table">
+<thead>
+<tr><th scope="col" rowspan="2">Finish with</th><th scope="col" rowspan="2" class="rf-num">New<br>settlements</th><th scope="colgroup" colspan="2" class="rf-group">Dev buys</th><th scope="colgroup" colspan="2" class="rf-group">Cards paid</th><th scope="col" rowspan="2">Wood · brick · sheep · wheat · ore<br><small>minimum-draw budget</small></th></tr>
+<tr><th scope="col" class="rf-num">min</th><th scope="col" class="rf-num">mean*</th><th scope="col" class="rf-num">min</th><th scope="col" class="rf-num">mean*</th></tr>
+</thead>
+<tbody id="route-table"></tbody></table></div>
+<ul class="rf-caveats">
+<li>*Mean: draw from a fresh 25-card deck until the required 3 knights and/or VP cards appear; no competing buyers. Includes other development purchases but gives no credit for their benefits.</li>
+<li>Army means 3 knights <em>played</em> and uncontested control; the road award is assumed secured.</li>
+<li>Extra knights, a contested road, bank trades, and discards can cost more. These are purchase budgets, not forecasts of winning speed.</li>
+</ul>
+</section>
+
+<div class="rf-bottom">
+<section class="rf-block" aria-labelledby="rf-acct-title">
+<h3 id="rf-acct-title">The accounting</h3>
+<dl class="rf-formulas">
+<div><dt>VP</dt><dd><code>2 + n + c + v + 2L + 2A</code></dd></div>
+<div><dt>Total cards paid</dt><dd><code>4n + 5c + 2r + 3d</code></dd></div>
+<div><dt>Resource vector</dt><dd><code>(n+r, n+r, n+d, n+2c+d, 3c+d)</code><small>wood, brick, sheep, wheat, ore</small></dd></div>
+</dl>
+<dl class="rf-vars">
+<div><dt>n</dt><dd>new settlements after setup</dd></div>
+<div><dt>c</dt><dd>city upgrades</dd></div>
+<div><dt>r</dt><dd>paid roads</dd></div>
+<div><dt>d</dt><dd>development purchases</dd></div>
+<div><dt>v</dt><dd>VP cards</dd></div>
+<div><dt>L, A</dt><dd>held Longest Road / Largest Army (0 or 1)</dd></div>
+</dl>
+</section>
+
+<section class="rf-block" aria-labelledby="rf-deduce-title">
+<h3 id="rf-deduce-title">Useful deductions</h3>
+<h4>Resource balance</h4>
+<ul class="rf-facts">
+<li><strong>Wheat − sheep = 2 × city upgrades.</strong> Sheep's direct demand is always ≤ wheat's for paid recipes.</li>
+<li><strong>Wood = brick</strong> in paid construction. Unequal production creates a bottleneck or a trading job.</li>
+</ul>
+<h4>Payback</h4>
+<ul class="rf-facts">
+<li><strong>City payback = 180 / site pips</strong> table rolls in an equal-card, no-robber model. At 12 pips: 15 rolls.</li>
+<li><strong>Settlement payback = 36(4 + 2r) / pips.</strong> Charge it the roads needed to reach it.</li>
+<li><strong>One round ≈ four table rolls</strong> in four-player play. You collect on other players' turns too.</li>
+</ul>
+<h4>Risk</h4>
+<ul class="rf-facts">
+<li><strong>Holding &gt;7 on a 7</strong> loses ⌊hand/2⌋ cards. A purchase can reduce exposure, but do not count those savings as guaranteed.</li>
+<li><strong>Same-number tiles are correlated.</strong> The robber blocks one hex, not every hex with that number.</li>
+</ul>
+</section>
+</div>
+</section>

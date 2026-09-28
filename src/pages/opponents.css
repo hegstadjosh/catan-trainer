@@ -1,0 +1,145 @@
+/* Opponents page: facts → estimates → read → log; recall reuses the facts grid. Scoped to #page-opponents. */
+#page-opponents{font-variant-numeric:tabular-nums;--op-cols:44px minmax(104px,180px) 64px repeat(5,64px) minmax(92px,1fr)}
+#page-opponents h2{font-size:22px;letter-spacing:-.4px;margin:0}
+#page-opponents h3{font-size:16px;font-weight:650;line-height:1.35;margin:0}
+#page-opponents h4{font-size:14px;font-weight:650;line-height:1.35;margin:0 0 8px}
+#page-opponents .op-top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;margin-bottom:8px}
+#page-opponents .op-lede{margin:4px 0 0;color:var(--cl-muted);font-size:14px;max-width:62ch}
+#page-opponents .op-caption{font-size:12px;line-height:1.5;color:var(--cl-muted);margin:4px 0 12px;max-width:72ch}
+#page-opponents .op-msg{font-size:12px;margin:6px 0 0;min-height:0}
+#page-opponents .op-msg:empty{display:none}
+#page-opponents .op-done{color:var(--cl-fg)}
+#page-opponents .op-done::before{content:"✓ ";font-weight:650}
+
+/* Sections: a rule and a heading, no cards */
+#page-opponents .op-block{border-top:1px solid var(--cl-line);padding-top:16px;margin-top:28px}
+#page-opponents .op-block-head{display:flex;align-items:baseline;gap:6px 12px;flex-wrap:wrap}
+#page-opponents .op-kind{font-size:12px;color:var(--cl-muted)}
+#page-opponents details{font-size:13px;margin:12px 0 0}
+#page-opponents summary{color:var(--cl-fg);font-weight:550;font-size:13px}
+
+/* Shared opponent grid: identical resource columns in Facts, Estimates and Recall */
+#page-opponents .op-grid{display:grid;row-gap:0}
+#page-opponents .op-row{display:grid;grid-template-columns:var(--op-cols);grid-template-areas:"sel name hand r1 r2 r3 r4 r5 end" "sel sub sub sub sub sub sub sub sub";column-gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--cl-line)}
+#page-opponents .op-head{font-size:12px;color:var(--cl-muted);font-weight:500;padding:0 0 6px;align-items:end;line-height:1.3}
+#page-opponents .op-head .cl-swatch{width:8px;height:8px;border-radius:2px;margin-right:4px;vertical-align:0}
+#page-opponents .op-c-sel{grid-area:sel;align-self:start}
+#page-opponents .op-c-name{grid-area:name;font-weight:600;min-width:0;overflow-wrap:anywhere}
+#page-opponents .op-c-hand{grid-area:hand}
+#page-opponents .op-c-r1{grid-area:r1}#page-opponents .op-c-r2{grid-area:r2}#page-opponents .op-c-r3{grid-area:r3}#page-opponents .op-c-r4{grid-area:r4}#page-opponents .op-c-r5{grid-area:r5}
+#page-opponents .op-c-end{grid-area:end;font-size:12px;color:var(--cl-muted)}
+#page-opponents .op-c-sub{grid-area:sub;font-size:12px;color:var(--cl-muted);margin-top:6px;line-height:1.5}
+#page-opponents .op-c-sub:empty{display:none}
+#page-opponents .op-num{font-size:16px;font-weight:600;color:var(--cl-fg);padding-left:4px}
+#page-opponents .op-row input[type=number]{width:100%;max-width:64px;text-align:center;padding:5px 4px;min-height:36px}
+#page-opponents .op-row .op-c-name input{font-weight:600}
+#page-opponents .op-on{background:linear-gradient(var(--cl-soft),var(--cl-soft)) no-repeat;background-size:100% 100%;box-shadow:inset 3px 0 0 var(--cl-accent)}
+
+/* Row selector: a radio-like control, filled when this opponent is being read */
+#page-opponents .op-pick{width:44px;height:36px;border:0;background:none;padding:0;display:grid;place-items:center}
+#page-opponents .op-pick::before{content:"";width:16px;height:16px;border-radius:50%;border:1.5px solid var(--cl-muted);box-sizing:border-box;background:var(--cl-input)}
+#page-opponents .op-pick[aria-pressed=true]::before{border:5px solid var(--cl-accent)}
+#page-opponents .op-pick:hover::before{border-color:var(--cl-fg)}
+
+/* Capabilities line: words carry the state; weight marks the certain threat */
+#page-opponents .op-cap-lead{color:var(--cl-muted)}
+#page-opponents .op-cap{color:var(--cl-fg);white-space:nowrap}
+#page-opponents .op-cap-yes strong{font-weight:650}
+#page-opponents .op-cap-no{color:var(--cl-muted)}
+#page-opponents .op-dot{color:var(--cl-line)}
+
+/* Estimates: dashed inputs say "not a fact" without relying on colour */
+#page-opponents input.op-est{border-style:dashed;border-color:#b9b6ac;background:var(--cl-bg)}
+#page-opponents .op-guesses .op-c-sub{margin-top:8px}
+#page-opponents .op-guesses .op-c-sub input{font-size:13px}
+
+/* Event recorder */
+#page-opponents .op-event{margin-top:16px}
+#page-opponents .op-event-form{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:end}
+#page-opponents .op-event-form label{flex:1 1 120px;min-width:0}
+#page-opponents .op-event-form .op-wide{flex:1.6 1 170px}
+#page-opponents .op-event-form .op-narrow{flex:0 0 72px}
+#page-opponents .op-event-form select:disabled,#page-opponents .op-event-form input:disabled{opacity:.45}
+#page-opponents .op-event .op-caption{margin-top:8px}
+#page-opponents #opp-event-log{margin:6px 0 0;padding-left:20px;font-size:12px;color:var(--cl-muted)}
+
+/* Actions */
+#page-opponents .cl-button{padding:7px 14px;font-size:13px;font-weight:600;border:1px solid var(--cl-line)}
+#page-opponents .op-primary{background:var(--cl-accent);color:var(--cl-on);border-color:var(--cl-accent);min-width:88px}
+#page-opponents .op-primary:hover:not(:disabled){background:#000;color:var(--cl-on)}
+#page-opponents #opp-cover[aria-pressed=true]{background:var(--cl-soft);color:var(--cl-fg);border-color:var(--cl-line)}
+
+/* Read: two columns — what they're building, what you predict */
+#page-opponents .op-read{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:32px;margin-top:12px;align-items:start}
+#page-opponents .op-read label{margin-bottom:10px}
+#page-opponents .op-read small{font-weight:400;color:var(--cl-muted);margin-left:4px}
+#page-opponents .op-read .op-caption{margin:-4px 0 10px}
+#page-opponents .op-pair{display:flex;gap:10px}
+#page-opponents .op-pair>label{flex:1 1 0;min-width:0}
+#page-opponents .op-missing{font-size:14px;line-height:1.5;padding:10px 12px;background:var(--cl-soft);border-radius:4px}
+#page-opponents #opp-more{margin-top:2px}
+#page-opponents #opp-more[open] summary{margin-bottom:8px}
+#page-opponents .op-commit{margin-top:20px;padding:14px 16px;background:var(--cl-soft);border-radius:4px}
+#page-opponents .op-commit-label{font-size:12px;color:var(--cl-muted);margin-bottom:4px}
+#page-opponents .op-thesis{font-size:14px;line-height:1.55;max-width:90ch}
+#page-opponents .op-commit-actions{display:flex;align-items:center;gap:8px 14px;flex-wrap:wrap;margin-top:12px}
+#page-opponents .op-commit-actions .op-msg{margin:0}
+
+/* Recall */
+#page-opponents .op-recall input.op-right{border-color:var(--cl-fg);box-shadow:inset 0 0 0 1px var(--cl-fg)}
+#page-opponents .op-recall input.op-wrong{border-color:#925015;box-shadow:inset 0 0 0 1px #925015}
+#page-opponents .op-infer{margin:16px 0 10px;max-width:760px}
+#page-opponents .op-infer small{font-weight:400;margin-left:4px}
+#page-opponents .op-recall-total{margin:14px 0 4px;font-size:14px}
+#page-opponents .op-recall-total strong{font-size:20px;margin-right:4px}
+#page-opponents .op-recall-lines{margin:0;padding-left:18px;font-size:12px;color:var(--cl-muted)}
+
+/* Prediction log */
+#page-opponents .op-log{border-top:1px solid var(--cl-line);padding-top:10px;margin-top:28px}
+#page-opponents .op-preds{list-style:none;margin:0;padding:0}
+#page-opponents .op-pred{display:grid;grid-template-columns:96px minmax(0,1fr) 160px;gap:4px 16px;padding:10px 0;border-bottom:1px solid var(--cl-line);align-items:start}
+#page-opponents .op-pred-meta{font-size:12px;color:var(--cl-muted)}
+#page-opponents .op-pred-text{font-size:13px;line-height:1.5;overflow-wrap:anywhere}
+#page-opponents .op-pred-outcome select{font-size:13px}
+#page-opponents .op-pred-no .op-pred-text,#page-opponents .op-pred-unclear .op-pred-text{color:var(--cl-muted)}
+#page-opponents .op-prod{margin:16px 0;padding:14px;border:1px solid var(--cl-line);border-radius:10px}
+#page-opponents .op-prod h4{margin:0}
+#page-opponents .op-prod-fields,#page-opponents .op-forecast-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+#page-opponents .op-prod-fields label,#page-opponents .op-forecast-form label{display:grid;gap:5px;font-size:13px}
+#page-opponents .op-prod-fields input,#page-opponents .op-forecast-form :is(input,select,textarea){width:100%;min-width:0}
+#page-opponents .op-f-wide{grid-column:1/-1}
+#page-opponents .op-f-combined{font-weight:650}
+#page-opponents .op-f-list{list-style:none;padding:0}
+#page-opponents .op-f-record{border-top:1px solid var(--cl-line);padding:12px 0}
+#page-opponents .op-f-record p{margin:5px 0}
+#page-opponents .op-f-resolve{display:flex;flex-wrap:wrap;align-items:end;gap:8px;margin:10px 0}
+#page-opponents .op-f-resolve label{display:grid;gap:4px;min-width:120px;font-size:12px}
+#page-opponents .op-f-resolve label:has(input){flex:1 1 180px}
+
+@media(max-width:860px){
+ #page-opponents .op-read{grid-template-columns:1fr;gap:12px}
+}
+/* Phones: each opponent becomes two lines — identity/hand, then the five resources */
+@media(max-width:640px){
+ #page-opponents h2{font-size:20px}
+ #page-opponents .op-row{grid-template-columns:repeat(5,minmax(0,1fr));grid-template-areas:"sel name name hand end" "r1 r2 r3 r4 r5" "sub sub sub sub sub";column-gap:6px;row-gap:6px}
+ #page-opponents .op-head{row-gap:2px}
+ #page-opponents .op-head .op-c-sel:empty,#page-opponents .op-head .op-c-end:empty{visibility:hidden}
+ #page-opponents .op-row input[type=number]{max-width:none;min-height:44px;font-size:16px}
+ #page-opponents .op-c-sel{align-self:center}
+ #page-opponents .op-pick{height:44px}
+ #page-opponents .op-c-sub{margin-top:0}
+ #page-opponents .op-cap{white-space:normal}
+ #page-opponents .op-event-form .op-narrow{flex:1 1 72px}
+ #page-opponents .op-event-form #opp-apply{flex:1 1 100%}
+ #page-opponents .op-top .cl-button{width:100%}
+ #page-opponents .cl-button{min-height:44px}
+ #page-opponents .op-pred{grid-template-columns:1fr}
+ #page-opponents .op-pred-outcome{max-width:220px}
+ #page-opponents .op-pair{flex-wrap:wrap}
+ #page-opponents .op-pair>label{flex-basis:130px}
+}
+@media(pointer:coarse){
+ #page-opponents :is(input:not([type=checkbox]),select,textarea){font-size:16px;min-height:44px}
+ #page-opponents .cl-button,#page-opponents summary{min-height:44px}
+}

@@ -1,0 +1,134 @@
+/* Math flashcards — one centered drill column; question and board first, actions pinned to the thumb zone. */
+#catan-lab.mf-standalone{max-width:760px;margin:auto;min-height:100vh;padding:14px 20px 0}
+#catan-lab.mf-standalone .mf-back{font-size:12px;color:var(--cl-muted);display:inline-flex;align-items:center;min-height:32px;text-decoration:none}
+#catan-lab.mf-standalone .mf-back:hover{color:var(--cl-fg);text-decoration:underline}
+
+#math-flashcards{font-variant-numeric:tabular-nums;display:block}
+#math-flashcards kbd{font:11px/1 ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--cl-muted);border:1px solid var(--cl-line);border-radius:3px;padding:2px 4px;margin-left:6px}
+@media(hover:none){#math-flashcards kbd{display:none}}
+
+/* Header: title left, standing status right */
+#math-flashcards .mf-top{display:flex;align-items:baseline;justify-content:space-between;gap:4px 16px;flex-wrap:wrap;margin:2px 0 8px}
+#math-flashcards .mf-top h1{font-size:20px;letter-spacing:-.3px;margin:0}
+#math-flashcards .mf-status{display:flex;flex-wrap:wrap;gap:0 12px;margin:0;font-size:12px;color:var(--cl-muted)}
+#math-flashcards .mf-status b{color:var(--cl-fg);font-weight:600}
+
+/* Settings: a one-line summary that opens in place */
+#math-flashcards .mf-settings{margin:0;border-top:1px solid var(--cl-line);border-bottom:1px solid var(--cl-line);font-size:12px}
+#math-flashcards .mf-settings summary{display:flex;align-items:center;gap:10px;min-height:44px;padding:0;color:var(--cl-fg);font-weight:600;list-style:none}
+#math-flashcards .mf-settings summary::-webkit-details-marker{display:none}
+#math-flashcards .mf-settings summary::after{content:'Change';margin-left:auto;font-weight:500;color:var(--cl-muted);text-decoration:underline;text-underline-offset:2px}
+#math-flashcards .mf-settings[open] summary::after{content:'Done'}
+#math-flashcards .mf-settings-value{font-weight:400;color:var(--cl-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+#math-flashcards .mf-controls{display:grid;grid-template-columns:1.2fr 1.2fr 1fr;gap:10px;padding:2px 0 4px}
+#math-flashcards .mf-controls label{font-size:12px;color:var(--cl-muted)}
+#math-flashcards .mf-controls select{min-height:40px;font-size:14px;color:var(--cl-fg)}
+#math-flashcards .mf-settings-note{font-size:12px;color:var(--cl-muted);margin:4px 0 10px}
+
+/* Session progress: text plus a hairline meter */
+#math-flashcards .mf-stats{display:flex;align-items:center;gap:12px;font-size:12px;color:var(--cl-muted);margin:10px 0 0}
+#math-flashcards .mf-stats b{color:var(--cl-fg);font-weight:600}
+#math-flashcards .mf-progress{flex:1;height:2px;background:var(--cl-line);position:relative;overflow:hidden}
+#math-flashcards .mf-progress i{position:absolute;inset:0 auto 0 0;background:var(--cl-accent)}
+
+/* Question */
+#math-flashcards .mf-card{margin:16px 0 0}
+#math-flashcards .mf-card-label{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:var(--cl-muted)}
+#math-flashcards .mf-context{font-size:14px;line-height:1.55;margin:10px 0 0}
+#math-flashcards .mf-card h2{font-size:20px;line-height:1.35;letter-spacing:-.2px;font-weight:600;margin:8px 0 14px;text-wrap:pretty}
+#math-flashcards .mf-empty h2,#math-flashcards .mf-finish h2{font-size:20px;margin:24px 0 6px}
+#math-flashcards .mf-empty p,#math-flashcards .mf-finish p{font-size:14px;color:var(--cl-muted);margin:0 0 16px}
+
+/* Board: real tessellated hexes, resource tint, paper seams */
+#math-flashcards .mf-sites{display:grid;grid-template-columns:minmax(0,1fr);justify-items:center;gap:8px;margin:0}
+#math-flashcards .mf-sites-split{grid-template-columns:repeat(2,minmax(0,1fr));align-items:center}
+#math-flashcards .mf-site{margin:0;min-width:0;width:100%}
+#math-flashcards .mf-board{display:block;width:100%;max-height:280px;overflow:visible}
+#math-flashcards .mf-shared .mf-board{max-height:380px}
+#math-flashcards .mf-sites-split .mf-board{max-height:240px}
+#math-flashcards .mf-board-hex{fill:color-mix(in srgb,var(--resource) 58%,#fff);stroke:var(--cl-bg);stroke-width:4;stroke-linejoin:round}
+#math-flashcards .mf-board-hex.mf-board-blocked{fill:color-mix(in srgb,var(--resource) 28%,var(--cl-soft))}
+#math-flashcards .mf-terrain{fill:none;stroke:color-mix(in srgb,var(--resource) 70%,#1a1a17);stroke-opacity:.45;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+#math-flashcards .mf-board text{text-anchor:middle;font-family:inherit}
+#math-flashcards .mf-board .mf-board-resource{fill:#1f1f1c;font-size:14px;font-weight:600;paint-order:stroke;stroke:#ffffff80;stroke-width:3px;stroke-linejoin:round}
+#math-flashcards .mf-number-token{fill:#fbf7ea;stroke:#1f1f1c33;stroke-width:1}
+#math-flashcards .mf-board .mf-board-number{fill:#252522;font-size:26px;font-weight:700}
+#math-flashcards .mf-board .mf-board-number.mf-red-number{fill:#b3261e}
+#math-flashcards .mf-robber{fill:#252522;stroke:#fff;stroke-width:1.2}
+#math-flashcards .mf-piece-shadow{fill:#0004}
+#math-flashcards .mf-piece path{stroke:#6e1d18;stroke-width:1;stroke-linejoin:round}
+#math-flashcards .mf-piece .mf-piece-front{fill:#c73a2e}
+#math-flashcards .mf-piece .mf-piece-side{fill:#8e271f}
+#math-flashcards .mf-piece .mf-piece-roof{fill:#ea6549}
+#math-flashcards .mf-board-note{font-size:12px;color:var(--cl-muted);text-align:center;margin:6px 0 0}
+
+/* Hand: five resource columns, color only as a thin cue */
+#math-flashcards .mf-hand{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--cl-line);border-bottom:1px solid var(--cl-line)}
+#math-flashcards .mf-hand>div{display:flex;flex-direction:column;align-items:center;padding:10px 2px 12px;font-size:12px;color:var(--cl-muted);box-shadow:inset 0 3px 0 var(--resource)}
+#math-flashcards .mf-hand>div+div{border-left:1px solid var(--cl-line)}
+#math-flashcards .mf-hand strong{font-size:28px;line-height:1.2;color:var(--cl-fg);font-weight:600}
+#math-flashcards .mf-hand small{font-size:11px;color:var(--cl-fg)}
+
+/* Answer */
+#math-flashcards #mf-answer{margin:16px 0 0;padding:14px 0 0;border-top:1px solid var(--cl-line);scroll-margin-bottom:190px}
+#math-flashcards .mf-answer-value{font-size:24px;line-height:1.3;font-weight:650;letter-spacing:-.3px;overflow-wrap:anywhere}
+#math-flashcards #mf-answer p{font-size:14px;line-height:1.6;margin:6px 0 0;color:var(--cl-fg)}
+
+/* Actions: pinned to the bottom while the question scrolls */
+#math-flashcards .mf-actions{position:sticky;bottom:0;z-index:1;background:var(--cl-bg);margin:16px -20px 0;padding:10px 20px calc(10px + env(safe-area-inset-bottom));border-top:1px solid var(--cl-line)}
+#math-flashcards .mf-primary{display:block;width:100%;min-height:48px;background:var(--cl-accent);color:var(--cl-on);border:0;border-radius:6px;font-size:16px;font-weight:600;padding:10px 16px}
+#math-flashcards .mf-primary:hover{background:#000}
+#math-flashcards .mf-hint{display:flex;justify-content:center;align-items:center;font-size:12px;color:var(--cl-muted);margin:6px 0 0}
+#math-flashcards .mf-hint kbd{margin-left:0}
+@media(hover:none){#math-flashcards .mf-hint{display:none}}
+#math-flashcards .mf-grade-label{font-size:12px;color:var(--cl-muted);margin:0 0 6px}
+#math-flashcards .mf-grades{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+#math-flashcards .mf-grades button{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-height:60px;padding:6px 2px;background:var(--cl-input);border:1px solid var(--cl-line);border-radius:6px;color:var(--cl-fg)}
+#math-flashcards .mf-grades button:hover:not(:disabled){border-color:var(--cl-fg)}
+#math-flashcards .mf-grades strong{font-size:15px;font-weight:600}
+#math-flashcards .mf-grades span{font-size:11px;color:var(--cl-muted)}
+#math-flashcards .mf-grades small{font-size:12px;color:var(--cl-muted)}
+#math-flashcards .mf-grades kbd{position:absolute;top:4px;right:4px;margin:0;border:0;padding:0;font-size:10px}
+#math-flashcards .mf-grades .mf-grade-default{background:var(--cl-accent);border-color:var(--cl-accent);color:var(--cl-on)}
+#math-flashcards .mf-grades .mf-grade-default span,#math-flashcards .mf-grades .mf-grade-default small,#math-flashcards .mf-grades .mf-grade-default kbd{color:#ffffffc0}
+#math-flashcards .mf-grades button:disabled{opacity:.45;cursor:progress}
+
+/* Finish */
+#math-flashcards .mf-finish-actions{display:flex;flex-wrap:wrap;gap:8px}
+#math-flashcards .mf-finish-actions .mf-primary{width:auto;flex:1 1 220px}
+#math-flashcards #mf-free,#math-flashcards #mf-retry-load{background:var(--cl-input);color:var(--cl-fg);border:1px solid var(--cl-line);border-radius:6px;min-height:48px;padding:10px 16px;font-size:14px;font-weight:500}
+#math-flashcards #mf-free{flex:0 1 auto}
+#math-flashcards #mf-retry-load{min-height:44px;margin:8px 0 0;display:block}
+
+/* Errors: plain statement plus the remedy, next to where it applies */
+#math-flashcards .mf-error{font-size:14px;line-height:1.5;color:var(--cl-fg);background:var(--cl-soft);border-left:3px solid #b3261e;padding:10px 12px;margin:12px 0}
+#math-flashcards .mf-actions .mf-error{margin:0 0 8px}
+
+/* Reference */
+#math-flashcards .mf-help{margin:24px 0 32px;font-size:12px;border-top:1px solid var(--cl-line)}
+#math-flashcards .mf-help summary{display:flex;align-items:center;min-height:44px;font-size:12px;font-weight:600;color:var(--cl-muted)}
+#math-flashcards .mf-help p{font-size:14px;line-height:1.6;margin:10px 0;max-width:65ch}
+
+@media(max-width:560px){
+ #catan-lab.mf-standalone{padding:8px 16px 0}
+ #math-flashcards .mf-top{margin-bottom:4px}
+ #math-flashcards .mf-status .mf-save{display:none}
+ #math-flashcards .mf-settings summary{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 10px;padding:8px 0}
+ #math-flashcards .mf-settings summary::after{grid-column:2;grid-row:1}
+ #math-flashcards .mf-settings-value{grid-column:1/-1;grid-row:2;white-space:normal;overflow:visible;text-overflow:clip}
+ #math-flashcards .mf-controls{grid-template-columns:1fr 1fr}
+ #math-flashcards .mf-controls label:first-child{grid-column:1/-1}
+ #math-flashcards .mf-controls select{min-height:44px;font-size:16px}
+ #math-flashcards .mf-card{margin-top:12px}
+ #math-flashcards .mf-card h2{font-size:18px;margin-bottom:10px}
+ #math-flashcards .mf-board{max-height:230px}
+ #math-flashcards .mf-shared .mf-board{max-height:320px}
+ #math-flashcards .mf-sites-split{gap:4px}
+ #math-flashcards .mf-sites-split .mf-board-resource{font-size:17px}
+ #math-flashcards .mf-sites-split .mf-board-number{font-size:30px}
+ #math-flashcards .mf-actions{margin:12px -16px 0;padding:8px 16px calc(8px + env(safe-area-inset-bottom))}
+ #math-flashcards .mf-grades span{display:none}
+ #math-flashcards .mf-grades button{min-height:56px}
+ #math-flashcards .mf-answer-value{font-size:22px}
+ #math-flashcards .mf-finish-actions>*{flex:1 1 100%}
+}

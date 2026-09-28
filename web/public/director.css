@@ -1,0 +1,104 @@
+/* Game tools (owner scenario editor). Same warm off-white tokens as the game page. */
+:root{--bg:#faf9f6;--fg:#252522;--muted:#66645d;--line:#dedcd5;--accent:#292925;--soft:#f0efea;--card:#fff;--ok:#3d6b4a;--warn:#925015;--bad:#a8322a;--focus:#526477}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.5 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,sans-serif}
+a{color:inherit}
+h1,h2,h3{line-height:1.25;margin:0 0 8px}
+h1{font-size:22px}
+h2{font-size:16px}
+h3{font-size:14px;margin:12px 0 4px}
+p{margin:0 0 8px}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+code{font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--soft);padding:1px 4px;border-radius:4px;overflow-wrap:anywhere}
+.dr-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.dr-muted{color:var(--muted)}
+.dr-small-text{font-size:12px}
+.dr-grow{flex:1;min-width:0}
+.dr-ok{color:var(--ok);font-weight:600}
+.dr-warn{color:var(--warn)}
+.dr-bad{color:var(--bad);font-weight:600}
+.dr-noscript{padding:24px}
+
+.dr-bar{max-width:1440px;margin:auto;padding:10px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted);border-bottom:1px solid var(--line)}
+.dr-brand{font-weight:650;color:var(--fg);text-decoration:none}
+.dr-bar-links{display:flex;gap:14px;flex-wrap:wrap}
+.dr-bar-links a{text-decoration:none}
+.dr-bar-links a[aria-current]{color:var(--fg);font-weight:600;text-decoration:underline;text-underline-offset:4px}
+.dr-email{margin-left:auto}
+.dr-bar form{margin:0}
+
+.dr-shell{max-width:1440px;margin:auto;padding:16px 24px 40px;display:grid;grid-template-columns:260px minmax(0,1fr);gap:24px;align-items:start}
+.dr-main{outline:none;min-width:0;display:grid;gap:16px}
+.dr-list{list-style:none;margin:8px 0 16px;padding:0;display:grid;gap:2px}
+.dr-list a{display:flex;flex-direction:column;padding:8px 10px;border-radius:6px;text-decoration:none}
+.dr-list a:hover{background:var(--soft)}
+.dr-list a[aria-current]{background:var(--card);box-shadow:inset 3px 0 0 var(--accent)}
+.dr-list-title{font-weight:600;overflow-wrap:anywhere}
+.dr-tabs{display:flex;gap:6px}
+.dr-create{border-top:1px solid var(--line);padding-top:12px}
+.dr-create input{width:100%}
+.dr-create summary{cursor:pointer;font-weight:650;min-height:32px}
+.dr-create form{padding-bottom:4px}
+label,.dr-label{display:block;font-weight:600;font-size:13px;margin:10px 0 4px}
+
+.dr-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:8px 14px;border:1px solid var(--line);border-radius:6px;background:var(--card);cursor:pointer;text-decoration:none;font-weight:550;font-size:14px;margin:0;white-space:nowrap}
+.dr-btn:hover:not(:disabled){border-color:#bdbab0}
+.dr-btn:disabled{opacity:.45;cursor:not-allowed}
+.dr-small{min-height:34px;padding:5px 10px;font-size:13px}
+.dr-on{background:var(--accent);border-color:var(--accent);color:#fff}
+.dr-primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.dr-primary:hover:not(:disabled){background:#000}
+.dr-quiet{background:transparent;border-color:transparent;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+.dr-danger{background:var(--bad);border-color:var(--bad);color:#fff}
+input:not([type=checkbox]),select{min-height:40px;padding:7px 10px;border:1px solid var(--line);border-radius:6px;background:var(--card)}
+input[type=checkbox]{width:18px;height:18px;vertical-align:-3px}
+
+.dr-head{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.dr-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.dr-row{display:flex;gap:8px}
+.dr-row input{flex:1;min-width:0}
+.dr-rename label{margin-top:0}
+.dr-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;min-width:0}
+.dr-notice{background:#fbf4e8;border:1px solid #ecd9b8;border-radius:8px;padding:10px 14px}
+.dr-banner{display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:#eef1f5;border:1px solid #cdd5df;border-radius:8px;padding:8px 12px}
+
+.dr-quick{border:0;padding:0;margin:0 0 12px}
+.dr-quick legend{font-weight:650;padding:0;margin-bottom:4px}
+.dr-grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.dr-field label{margin-top:0}
+.dr-field select,.dr-field input{width:100%}
+.dr-table-wrap{overflow-x:auto}
+.dr-table{border-collapse:collapse;min-width:640px;width:100%}
+.dr-table th,.dr-table td{padding:4px 6px;text-align:left;border-bottom:1px solid var(--soft);white-space:nowrap}
+.dr-table thead th{font-size:12px;color:var(--muted);font-weight:600;text-transform:capitalize}
+.dr-num{width:64px}
+.dr-json{display:block;width:100%;min-height:420px;resize:vertical;padding:10px;border:1px solid var(--line);border-radius:6px;background:#fdfdfb;font:12px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace;tab-size:2}
+.dr-checks{display:flex;gap:16px;flex-wrap:wrap}
+.dr-checks label{font-weight:500}
+.dr-status{margin:10px 0 8px;font-size:13px}
+.dr-result{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+.dr-result ul{margin:0;padding-left:18px}
+.dr-result li{margin:2px 0}
+.dr-problems li{color:var(--bad)}
+.dr-warnings h3{color:var(--warn)}
+
+.dr-conns{list-style:none;margin:8px 0 0;padding:0}
+.dr-conns li{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:8px 0;border-top:1px solid var(--soft)}
+.dr-token{background:var(--soft);border-radius:8px;padding:12px;margin:8px 0}
+.dr-token-code{display:block;padding:8px;margin:6px 0;user-select:all}
+.dr-danger-zone{border-color:#e7c9c5}
+.dr-danger-zone input{width:min(260px,100%);margin-bottom:10px}
+
+.dr-toasts{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);display:grid;gap:8px;z-index:20;width:min(460px,calc(100vw - 24px))}
+.dr-toast{background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+.dr-toast-error{background:var(--bad)}
+
+@media (max-width:860px){
+ .dr-shell{grid-template-columns:1fr;padding:12px 14px 32px}
+ .dr-grid4{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .dr-bar{padding:10px 14px}
+ .dr-card{padding:12px}
+ .dr-json{min-height:320px}
+}

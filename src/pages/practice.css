@@ -1,0 +1,152 @@
+/* Practice: study → recall → review. Every selector is scoped to #page-practice. */
+#page-practice{--pr-p0:#b0382c;--pr-p1:#34598a;--pr-p2:#d4822a;--pr-miss:#925015;--pr-sea:#dde6e8;--pr-hot:#a8322a}
+#page-practice .pr-head{display:flex;align-items:flex-end;justify-content:space-between;gap:8px 20px;flex-wrap:wrap;margin-bottom:16px}
+#page-practice .pr-head h2{font-size:22px;letter-spacing:-.4px;margin:0}
+#page-practice .pr-lede{margin:4px 0 0;color:var(--cl-muted);font-size:14px;max-width:560px}
+#page-practice .pr-score{font-size:12px;color:var(--cl-muted);font-variant-numeric:tabular-nums}
+#page-practice .pr-score strong{color:var(--cl-fg);font-size:14px}
+
+/* Settings: only the controls that apply to the chosen drill. */
+#page-practice .pr-settings{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 14px;padding-bottom:16px;border-bottom:1px solid var(--cl-line)}
+#page-practice .pr-settings label{flex:0 1 170px;min-width:0;font-weight:550;color:var(--cl-muted)}
+#page-practice .pr-settings label.pr-drill{flex-basis:240px}
+#page-practice .pr-settings select{color:var(--cl-fg)}
+#page-practice .cl-button.pr-primary{background:var(--cl-accent);color:var(--cl-on);border-color:var(--cl-accent);padding:7px 16px;font-size:13px;min-height:36px}
+#page-practice .cl-button.pr-primary:hover:not(:disabled){background:#43433d}
+#page-practice .cl-button.pr-primary:disabled{background:var(--cl-soft);color:var(--cl-muted);border-color:var(--cl-line)}
+
+/* Status: where you are in the drill, and the study clock. */
+#page-practice .pr-status{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 0 20px;min-height:24px}
+#page-practice .pr-stages{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 18px;counter-reset:pr-stage;font-size:12px;color:var(--cl-muted)}
+#page-practice .pr-stages li{counter-increment:pr-stage;display:flex;align-items:center;gap:6px}
+#page-practice .pr-stages li::before{content:counter(pr-stage);display:inline-grid;place-items:center;width:18px;height:18px;border:1px solid var(--cl-line);border-radius:50%;font-size:11px;font-variant-numeric:tabular-nums}
+#page-practice .pr-stages li.pr-done::before{content:'✓';border-color:var(--cl-muted)}
+#page-practice .pr-stages li[aria-current=step]{color:var(--cl-fg);font-weight:650}
+#page-practice .pr-stages li[aria-current=step]::before{background:var(--cl-accent);border-color:var(--cl-accent);color:var(--cl-on)}
+#page-practice #practice-clock{font-size:14px;font-weight:650;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* Shared stage content. */
+#page-practice .pr-empty ol{margin:0;padding-left:20px;font-size:14px;max-width:620px}
+#page-practice .pr-empty li{padding:2px 0}
+#page-practice .pr-hint{font-size:14px;margin:0 0 16px;color:var(--cl-muted)}
+#page-practice .pr-hint strong{color:var(--cl-fg)}
+#page-practice #practice-ui h3.pr-task{font-size:16px;font-weight:650;margin:0 0 4px}
+#page-practice #practice-grade{margin-top:0}
+#page-practice .pr-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:20px 0 4px}
+#page-practice .pr-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Opponents side by side; each separated by a rule, not a card. */
+#page-practice .pr-players{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:24px 32px}
+#page-practice .pr-player{min-width:0;border-top:1px solid var(--cl-line);padding-top:12px}
+#page-practice #practice-ui .pr-player h3{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:650;margin:0 0 10px}
+#page-practice .pr-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;background:var(--pr-p0)}
+#page-practice .pr-p1{background:var(--pr-p1);fill:var(--pr-p1)}
+#page-practice .pr-p2{background:var(--pr-p2);fill:var(--pr-p2)}
+#page-practice .pr-count{margin-left:auto;font-size:14px;font-variant-numeric:tabular-nums}
+
+/* Board: two independent building sites per opponent, each drawn as three tessellated hexes around one corner. */
+#page-practice .pr-sites{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#page-practice .pr-site{margin:0;min-width:0;text-align:center}
+#page-practice .pr-site svg{display:block;width:100%;max-width:170px;margin:0 auto;height:auto;overflow:visible}
+#page-practice .pr-site figcaption{font-size:12px;color:var(--cl-muted);margin-top:2px}
+#page-practice .pr-hex{fill:color-mix(in srgb,var(--tile) 58%,#fff);stroke:var(--cl-bg);stroke-width:2;stroke-linejoin:round}
+#page-practice .pr-sea{fill:var(--pr-sea);stroke:var(--cl-bg);stroke-width:2}
+#page-practice .pr-site text{text-anchor:middle;font-family:inherit;fill:var(--cl-fg)}
+#page-practice .pr-res{font-size:7.5px;font-weight:600}
+#page-practice .pr-token{fill:#fff;stroke:rgba(37,37,34,.18);stroke-width:.6}
+#page-practice .pr-num{font-size:11px;font-weight:700;font-variant-numeric:tabular-nums}
+#page-practice .pr-pip{fill:var(--cl-fg)}
+#page-practice .pr-site .pr-hot{fill:var(--pr-hot)}
+#page-practice .pr-port-label{font-size:7.5px;font-weight:600;fill:#46545a}
+#page-practice .pr-piece{fill:var(--pr-p0);stroke:#fff;stroke-width:1.6;stroke-linejoin:round}
+#page-practice .pr-player:nth-child(2) .pr-piece{fill:var(--pr-p1)}
+#page-practice .pr-player:nth-child(3) .pr-piece{fill:var(--pr-p2)}
+#page-practice .pr-port{font-size:12px;color:var(--cl-muted);margin:8px 0 0}
+#page-practice .pr-port strong{color:var(--cl-fg)}
+
+/* Recall form. */
+#page-practice .pr-field{margin:0 0 12px;font-weight:600;font-size:12px}
+#page-practice .pr-field small{font-weight:400;color:var(--cl-muted);font-size:12px}
+#page-practice .pr-chips{margin:0 0 12px;gap:6px}
+#page-practice .pr-chips legend{font-size:12px;font-weight:600;color:var(--cl-fg);margin-bottom:6px;padding:0}
+#page-practice .pr-chips label{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:32px;min-width:32px;padding:0 10px;border:1px solid var(--cl-line);border-radius:5px;background:var(--cl-input);font-size:13px;cursor:pointer;user-select:none;font-variant-numeric:tabular-nums}
+#page-practice .pr-chips input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+#page-practice .pr-chips label:hover{border-color:var(--cl-muted)}
+#page-practice .pr-chips label:has(input:checked){background:var(--cl-accent);border-color:var(--cl-accent);color:var(--cl-on);font-weight:600}
+#page-practice .pr-chips label:has(input:focus-visible){outline:2px solid #526477;outline-offset:2px}
+#page-practice .pr-numbers label{padding:0 6px;min-width:36px}
+#page-practice .pr-interpret{border-top:1px dashed var(--cl-line);padding-top:12px;margin-top:4px}
+#page-practice .pr-interpret .pr-field{margin:0}
+
+/* Hand drill. */
+#page-practice .pr-hand{display:grid;grid-template-columns:repeat(5,minmax(0,92px));gap:8px;margin:16px 0}
+#page-practice .pr-hand>div{display:flex;flex-direction:column;align-items:center;padding:8px 4px 10px;background:var(--cl-input);border:1px solid var(--cl-line);border-top:3px solid var(--tile);border-radius:4px;font-size:12px;color:var(--cl-muted)}
+#page-practice .pr-hand strong{font-size:28px;line-height:1.2;color:var(--cl-fg);font-variant-numeric:tabular-nums}
+#page-practice .pr-event-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;max-width:680px}
+#page-practice .pr-held{font-size:13px;color:var(--cl-muted)}
+#page-practice .pr-held strong{color:var(--cl-fg);font-size:16px;font-variant-numeric:tabular-nums}
+#page-practice .pr-progress{display:flex;gap:4px;max-width:680px;margin:8px 0 14px}
+#page-practice .pr-progress i{flex:1;height:3px;border-radius:2px;background:var(--cl-line)}
+#page-practice .pr-progress i.pr-on{background:var(--cl-fg)}
+#page-practice .cl-event-card.pr-event{background:var(--cl-input);border:1px solid var(--cl-line);border-left:3px solid var(--cl-accent);border-radius:4px;padding:20px 22px;margin:0;font-size:18px;line-height:1.5;max-width:680px}
+#page-practice .pr-bounds{width:auto;min-width:300px;max-width:460px;margin:14px 0 16px}
+#page-practice .pr-bounds td input{width:76px}
+#page-practice .pr-swatch{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:7px;background:var(--tile)}
+#page-practice .pr-threat{max-width:460px}
+#page-practice .pr-threat .pr-field{font-size:13px}
+
+/* Review. */
+#page-practice #practice-feedback:empty{display:none}
+#page-practice .pr-result{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 16px;margin:0 0 20px;background:var(--cl-soft);border-radius:5px;font-size:14px;font-variant-numeric:tabular-nums;outline:none}
+#page-practice .pr-result strong{font-size:24px;letter-spacing:-.3px;margin-right:4px}
+#page-practice .pr-checks{list-style:none;margin:12px 0 0;padding:0;font-size:13px}
+#page-practice .pr-checks li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:4px;padding:6px 0;border-bottom:1px solid var(--cl-line)}
+#page-practice .pr-checks small{display:block;color:var(--cl-muted);font-size:12px}
+#page-practice .pr-mark{font-weight:700}
+#page-practice .pr-miss .pr-mark{color:var(--pr-miss)}
+#page-practice .pr-you{display:block;color:var(--pr-miss);font-size:12px}
+#page-practice .pr-reading{font-size:13px;margin:10px 0 0;max-width:680px}
+#page-practice .pr-answer td small{color:var(--cl-muted);margin-left:4px}
+#page-practice .pr-answer tr.pr-miss td:last-child{color:var(--pr-miss)}
+#page-practice .pr-replay{margin-top:16px;font-size:13px;max-width:680px}
+#page-practice .pr-replay ol{padding-left:20px}
+#page-practice .pr-replay li{padding:4px 0}
+
+/* Table guide stays below the drill as reference. */
+#page-practice .pr-guide{margin-top:32px;border-top:1px solid var(--cl-line);padding-top:10px;max-width:760px;font-size:13px}
+#page-practice .pr-guide .cl-facts{font-size:13px;margin-top:8px}
+
+@media(max-width:760px){
+ #page-practice .pr-settings label,#page-practice .pr-settings label.pr-drill{flex:1 1 140px}
+ #page-practice .pr-settings .pr-primary{flex:1 1 100%}
+ #page-practice .pr-status{align-items:flex-start}
+ #page-practice .pr-players{grid-template-columns:minmax(0,1fr)}
+ #page-practice .pr-site svg{max-width:150px}
+ #page-practice .cl-event-card.pr-event{font-size:16px;padding:16px}
+ #page-practice .pr-hand{grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+ #page-practice .pr-hand strong{font-size:24px}
+ #page-practice .pr-hand>div{font-size:11px}
+ #page-practice .pr-bounds{min-width:0;width:100%}
+ #page-practice .pr-actions .pr-primary{flex:1 1 100%}
+ #page-practice .cl-button.pr-primary,#page-practice .pr-chips label{min-height:44px}
+ #page-practice .pr-chips label{min-width:44px}
+ #page-practice .pr-numbers label{min-width:44px}
+}
+@media(pointer:coarse){
+ #page-practice .cl-button.pr-primary,#page-practice .pr-chips label{min-height:44px}
+ #page-practice .pr-chips label{min-width:44px}
+}
+@media print{
+ #page-practice .pr-settings,#page-practice .pr-actions,#page-practice #practice-next{display:none}
+}
+
+#page-practice .pr-settings-panel{margin:12px 0 0;border-top:1px solid var(--cl-line);border-bottom:1px solid var(--cl-line)}
+#page-practice .pr-settings-panel>summary{font-size:13px;font-weight:550;min-height:44px}
+#page-practice .pr-settings-panel .pr-settings{margin:0;padding:4px 0 16px;border:0}
+#page-practice .pr-active .pr-lede{display:none}
+#page-practice .pr-odds{max-width:720px;padding:18px;border:1px solid var(--cl-line);border-radius:12px}
+#page-practice .pr-odds p{line-height:1.55}
+#page-practice .pr-odds fieldset{display:grid;gap:8px;border:0;padding:0;margin:16px 0}
+#page-practice .pr-odds legend{font-weight:600;margin-bottom:8px}
+#page-practice .pr-odds label{display:flex;align-items:center;gap:9px;min-height:44px;padding:7px 10px;border:1px solid var(--cl-line);border-radius:8px;cursor:pointer;font-size:13px;line-height:1.35}
+#page-practice .pr-odds input[type=radio]{appearance:auto;flex:0 0 19px;width:19px!important;max-width:19px;height:19px;min-height:19px!important;padding:0;margin:0;accent-color:var(--cl-accent)}
